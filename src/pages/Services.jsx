@@ -1,120 +1,79 @@
-import Reveal from "../components/Reveal";
+// src/pages/Services.jsx
+import { telemarketingIntro, services, logos } from "../content/services";
 
 export default function Services() {
   return (
-    <main className="section">
-      <div className="container">
-
-        {/* ===== Intro Section ===== */}
-        <Reveal as="section">
-          <span className="badge">Our Services</span>
-          <h1 className="h1" style={{marginTop:8}}>
-            Helping Businesses Grow with Expert Telemarketing & Lead Generation
+    <main>
+      {/* Intro */}
+      <section className="section">
+        <div className="container">
+          <h1 className="h1" style={{ marginBottom: 10 }}>
+            {telemarketingIntro.title}
           </h1>
-          <p className="p">
-            At <strong>Green Tech</strong>, we help businesses around the globe grow faster by delivering
-            high-impact telemarketing, lead generation, and communication solutions — designed to
-            drive real, measurable results.
-          </p>
-          <p className="p">
-            For <strong>5 + years</strong>, we’ve completed hundreds of successful projects on Fiverr and beyond,
-            partnering with startups, SMEs, and enterprises to connect them with the right audience
-            and achieve their sales goals.
-          </p>
-          <p className="p">
-            We’re not just service providers — we’re your <strong>growth partners</strong>. Our team blends
-            professionalism, proven sales techniques, and modern tools to generate qualified leads,
-            close more deals, and build lasting customer relationships.
-          </p>
-        </Reveal>
+          <p className="p">{telemarketingIntro.tagline}</p>
 
-        {/* ===== What We Do Best ===== */}
-        <section className="svcGrid" style={{marginTop:24}}>
-          <Reveal className="svcCard s1">
-            <div className="svcIcon">📞</div>
-            <h3 className="h3">Telemarketing</h3>
-            <p className="p">
-              Persuasive, professional calls tailored to engage your audience and inspire action.
-            </p>
-          </Reveal>
-
-          <Reveal className="svcCard s2" delay={120}>
-            <div className="svcIcon">📈</div>
-            <h3 className="h3">Cold Calling</h3>
-            <p className="p">
-              Proven scripts & objection-handling techniques that turn prospects into loyal customers.
-            </p>
-          </Reveal>
-
-          <Reveal className="svcCard s3" delay={200}>
-            <div className="svcIcon">🤝</div>
-            <h3 className="h3">B2B & B2C Outreach</h3>
-            <p className="p">
-              Connecting you effectively with decision-makers and customers alike.
-            </p>
-          </Reveal>
-
-          <Reveal className="svcCard s4" delay={280}>
-            <div className="svcIcon">🎯</div>
-            <h3 className="h3">Lead Generation</h3>
-            <p className="p">
-              Filling your sales pipeline with high-quality, targeted leads aligned to your ICP.
-            </p>
-          </Reveal>
-
-          <Reveal className="svcCard s5" delay={340}>
-            <div className="svcIcon">🗣</div>
-            <h3 className="h3">Telecommunication Services</h3>
-            <p className="p">
-              Supporting seamless, professional client interactions and inbound + outbound calls.
-            </p>
-          </Reveal>
-
-          <Reveal className="svcCard s6" delay={400}>
-            <div className="svcIcon">👩‍🏫</div>
-            <h3 className="h3">Telemarketing Training</h3>
-            <p className="p">
-              Coaching individuals & teams to master tone, objection handling, and closing.
-            </p>
-          </Reveal>
-
-          <Reveal className="svcCard s7" delay={460}>
-            <div className="svcIcon">💻</div>
-            <h3 className="h3">Virtual Client Meetings</h3>
-            <p className="p">
-              Smooth, timely communication via Zoom, Google Meet & other collaboration tools.
-            </p>
-          </Reveal>
-        </section>
-
-        {/* ===== Why Choose Us ===== */}
-        <section className="section">
-          <Reveal as="div">
-            <h2 className="h2">Why Choose Green Tech?</h2>
-            <p className="p">
-              Our experience, results, and professionalism set us apart — we focus on ROI and long-term success.
-            </p>
-          </Reveal>
-
-          <div className="flow">
-            <Reveal className="flowItem"><div className="stepNo">1</div><div><div className="h3" style={{margin:0}}>Proven Experience</div><div className="p">5 + years in the industry with consistent client satisfaction.</div></div></Reveal>
-            <Reveal className="flowItem" delay={100}><div className="stepNo">2</div><div><div className="h3" style={{margin:0}}>Hundreds of 5-Star Reviews</div><div className="p">Trusted by global clients across Fiverr & direct contracts.</div></div></Reveal>
-            <Reveal className="flowItem" delay={200}><div className="stepNo">3</div><div><div className="h3" style={{margin:0}}>Domestic & International Reach</div><div className="p">Skilled teams for diverse markets & time zones.</div></div></Reveal>
-            <Reveal className="flowItem" delay={300}><div className="stepNo">4</div><div><div className="h3" style={{margin:0}}>ROI-Focused Results</div><div className="p">Strategies designed to boost your bottom line.</div></div></Reveal>
-            <Reveal className="flowItem" delay={400}><div className="stepNo">5</div><div><div className="h3" style={{margin:0}}>Professional & Reliable</div><div className="p">Client-centric, transparent, and always communication-driven.</div></div></Reveal>
+          <div className="card" style={{ marginTop: 18 }}>
+            <h3 className="h3" style={{ marginBottom: 6 }}>
+              What is Telemarketing?
+            </h3>
+            <p className="p">{telemarketingIntro.whatIs}</p>
+            <ul className="list check">
+              <li>Outbound calls to targeted prospects</li>
+              <li>Inbound calls from ads or promotions</li>
+              <li>Live agents first; automation only where fully compliant</li>
+              <li>Used across B2B and B2C campaigns</li>
+            </ul>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ===== CTA ===== */}
-        <section className="ctaBubble" style={{marginTop:32,display:"flex",justifyContent:"space-between",alignItems:"center",gap:16,flexWrap:"wrap"}}>
-          <div>
-            <h2 className="h2">Ready to Grow Your Business?</h2>
-            <p className="p">Let’s connect — and turn your outreach into measurable results.</p>
+      {/* Service Cards */}
+      <section className="section alt" id="services">
+        <div className="container">
+          <div className="sectionHeading center">
+            <div className="lead">
+              <h2 className="h2">Service That We Provide</h2>
+              <p className="p">
+                Outcome-focused calling & lead gen with compliance, QA, and clear reporting.
+              </p>
+            </div>
           </div>
-          <a className="btn" href="/contact">Reach Out →</a>
-        </section>
 
-      </div>
+          <div className="svcGrid">
+            {services.map((s) => (
+              <article key={s.id} className="svcCard">
+                <div className="svcIcon" aria-hidden>{s.icon}</div>
+                <h3 className="h3" style={{ marginBottom: 6 }}>{s.title}</h3>
+                <p className="p">{s.summary}</p>
+
+                {/* details/accordions */}
+                {Object.entries(s.bullets).map(([group, items], idx) => (
+                  <details key={idx} className="acc">
+                    <summary>{group}</summary>
+                    <ul className="list dot">
+                      {items.map((t, i) => <li key={i}>{t}</li>)}
+                    </ul>
+                  </details>
+                ))}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Logos / Companies Worked With */}
+      <section className="section">
+        <div className="container">
+          <h2 className="h2" style={{ marginBottom: 12 }}>Companies We Worked With</h2>
+          <div className="logoRow">
+            {logos.map((l, i) => (
+              <a href={l.url} key={i} className="logoPill" target="_blank" rel="noreferrer">
+                {l.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

@@ -1,56 +1,96 @@
-// src/components/Navbar.jsx
-import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import logo from "../assets/logo.jpg"; // optional
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const loc = useLocation();
+  const location = useLocation();
 
-  // Close drawer on route change
-  useEffect(() => { setOpen(false); }, [loc.pathname]);
-
-  // Lock body scroll while menu open
+  // close drawer on route change
   useEffect(() => {
-    if (open) document.body.classList.add("menu-open");
-    else document.body.classList.remove("menu-open");
-    return () => document.body.classList.remove("menu-open");
-  }, [open]);
+    setOpen(false);
+    document.body.classList.remove("menu-open");
+  }, [location.pathname]);
 
-  // Auto close when resizing to desktop
+  // Escape to close
   useEffect(() => {
-    const onResize = () => { if (window.innerWidth > 900) setOpen(false); };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    const onKey = (e) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  const linkCls = ({ isActive }) => "pill" + (isActive ? " active" : "");
+  // keep <body> from scrolling when menu is open
+  useEffect(() => {
+    document.body.classList.toggle("menu-open", open);
+  }, [open]);
 
   return (
-    <nav className="nav">
-      <div className="container" style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:16}}>
-        <Link to="/" className="small" style={{fontWeight:800}}>Green Tech</Link>
+    <header className="nav">
+      <div className="container navBar">
+        <Link to="/" className="brand" aria-label="Green Tech">
+          {logo ? (
+            <img
+              src={logo}
+              alt="Green Tech"
+              width="28"
+              height="28"
+              style={{ borderRadius: 8, objectFit: "cover" }}
+            />
+          ) : null}
+          <span>Green Tech</span>
+        </Link>
 
-        <div className="hideOnMobile" style={{display:"flex",alignItems:"center",gap:6}}>
-          <NavLink to="/about" className={linkCls}>About</NavLink>
-          <NavLink to="/services" className={linkCls}>Services</NavLink>
-          <NavLink to="/help" className={linkCls}>Help Center</NavLink>
-          <Link to="/contact" className="btn" style={{padding:"10px 14px"}}>Discover GT</Link>
-        </div>
+        <nav className="links hideOnMobile" aria-label="Primary">
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/services">Services</NavLink>
+          <NavLink to="/contact">Help Center</NavLink>
+        </nav>
 
-        <button className="menuBtn" onClick={() => setOpen(v=>!v)} aria-label="Open menu">☰</button>
+        <Link className="btn sm hideOnMobile" to="/contact">
+          Discover GT
+        </Link>
+
+        <button
+          className="menuBtn"
+          aria-label="Open menu"
+          aria-expanded={open}
+          aria-controls="mobile-drawer"
+          onClick={() => setOpen((v) => !v)}
+        >
+          ☰
+        </button>
       </div>
 
-      {/* Mobile overlay + drawer */}
-      <div className={`navMenu ${open ? "open" : ""}`} role="dialog" aria-modal="true">
-        <div className="navScrim" onClick={() => setOpen(false)} />
-        <div className="navDrawer">
-          <button className="navCloseBtn" onClick={() => setOpen(false)} aria-label="Close menu">✕</button>
-          <NavLink onClick={()=>setOpen(false)} to="/about">About</NavLink>
-          <NavLink onClick={()=>setOpen(false)} to="/services">Services</NavLink>
-          <NavLink onClick={()=>setOpen(false)} to="/help">Help Center</NavLink>
-          <Link onClick={()=>setOpen(false)} to="/contact" className="btn" style={{marginTop:8}}>Discover GT</Link>
+      {/* Mobile drawer */}
+      <div
+        className={`navMenu ${open ? "open" : ""}`}
+        onClick={() => setOpen(false)}
+      >
+        <div className="navScrim" />
+        <div
+          id="mobile-drawer"
+          className="navDrawer"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            className="navCloseBtn"
+            aria-label="Close menu"
+            onClick={() => setOpen(false)}
+          >
+            ✕
+          </button>
+
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/services">Services</NavLink>
+          <NavLink to="/contact">Help Center</NavLink>
+
+          <Link className="btn primary" to="/contact">
+            Discover GT
+          </Link>
         </div>
       </div>
-    </nav>
+    </header>
   );
 }

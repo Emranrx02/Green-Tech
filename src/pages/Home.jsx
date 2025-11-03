@@ -1,160 +1,182 @@
-import Reveal from "../components/Reveal";
-import FAQ from "../components/FAQ";
-import Testimonials from "../components/Testimonials";
-import heroImg from "../assets/Male call center operator in headset working on laptop.jpg";
+import callImg from "../assets/call.jpg";
 
-
-function Home() {
+export default function Home() {
   return (
     <>
-      {/* ========= HERO ========= */}
-      <div className="container section">
-        <div className="hero">
-          <div className="hero__inner">
-            <Reveal as="div">
-              <span className="badge">B2B & B2C Outreach</span>
-              <h1 className="h1" style={{ marginTop: 8 }}>
-                Good For Our Customer <br /> Experience
-              </h1>
-              <p className="p">
-                We book qualified meetings via human-first cold calling,
-                omni-channel follow-ups, and clear reporting.
-              </p>
-              <div style={{ display: "flex", gap: 12, marginTop: 12, flexWrap: "wrap" }}>
-                <Reveal as="a" delay={120} className="btn" href="/contact">More About Us</Reveal>
-                <Reveal as="a" delay={200} className="btn ghost" href="/services">Explore Services</Reveal>
+      {/* ===== HERO ===== */}
+      <section className="heroSection">
+        <div className="heroContainer reveal">
+          <div className="heroText">
+            <span className="heroBadge">B2B & B2C Outreach</span>
+            <h1 className="heroTitle">
+              Helping businesses grow with expert telemarketing
+            </h1>
+            <p className="heroLead">
+              Human-first calls, compliant scripts, clear reporting.
+            </p>
+            <div className="heroButtons">
+              <a href="/contact" className="btn">Get Started</a>
+              <a href="/services" className="btn ghost">View Services</a>
+            </div>
+            <ul className="heroChips">
+              <li>DNC • GDPR • TCPA</li>
+              <li>Call Center Agents</li>
+            </ul>
+          </div>
+
+          <div className="heroVisual">
+            <div className="heroImage">
+              <img src={callImg} alt="Call center" />
+              <span className="heroRing r1" />
+              <span className="heroRing r2" />
+              <span className="heroRing r3" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== COMPANIES (2nd section) ===== */}
+      {/* ==== Floating Avatars Section ==== */}
+
+<section className="avatarsSection">
+  <div className="avatarsRow left">
+    <img className="avatar" src="/src/assets/avatars/a1.jpg" alt="client" />
+    <img className="avatar" src="/src/assets/avatars/a2.jpg" alt="client" />
+    <img className="avatar" src="/src/assets/avatars/a3.jpg" alt="client" />
+    <img className="avatar" src="/src/assets/avatars/a4.jpg" alt="client" />
+    <img className="avatar" src="/src/assets/avatars/a4.jpg" alt="client" />
+    <img className="avatar" src="/src/assets/avatars/a4.jpg" alt="client" />
+    <img className="avatar" src="/src/assets/avatars/a4.jpg" alt="client" />
+    <img className="avatar" src="/src/assets/avatars/a4.jpg" alt="client" />
+    <img className="avatar" src="/src/assets/avatars/a4.jpg" alt="client" />
+  </div>
+</section>
+
+      {/* ===== CORE SERVICES (cards) ===== */}
+      <section className="section reveal">
+        <div className="container">
+          <h2 className="h2 slim">Core services</h2>
+          <p className="p tiny">Pick what you need—mix & match easily.</p>
+
+          <div className="svcGrid">
+            {[
+              {t:"B2B Cold Calling", d:"Qualify, handle objections, book meetings."},
+              {t:"B2C Cold Calling", d:"High-volume compliant outreach that converts."},
+              {t:"B2B Lead Generation", d:"ICP targeting, research, CRM hygiene."},
+              {t:"B2C Lead Generation", d:"Paid + organic funnels with clear ROI."}
+            ].map((s,i)=>(
+              <article className="svcCard" key={i}>
+                <div className="svcIcon">✳︎</div>
+                <h3 className="h3">{s.t}</h3>
+                <p className="p tiny">{s.d}</p>
+                <a className="fPill" href="/services">Learn more →</a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FEATURES (compact) ===== */}
+      <section className="section reveal alt">
+        <div className="container">
+          <h2 className="h2 slim">Why teams choose us</h2>
+          <div className="grid-4">
+            {[
+              {t:"Compliant by default", d:"DNC • GDPR • TCPA ready."},
+              {t:"Human-first", d:"Neutral accents, strong rebuttals."},
+              {t:"Clear reporting", d:"Daily notes, call summaries, QA."},
+              {t:"Scale fast", d:"Pilot → ramp with confidence."}
+            ].map((f,i)=>(
+              <div className="card" key={i}>
+                <div className="icon">✓</div>
+                <div className="fTitle">{f.t}</div>
+                <p className="fText">{f.d}</p>
               </div>
-            </Reveal>
-
-            <Reveal as="div" delay={120} className="hero__img">
-              <img className="float" src={heroImg} alt="Call agent"
-                   style={{ borderRadius: 18, width: "100%", height: "auto" }} />
-            </Reveal>
-          </div>
-        </div>
-      </div>
-
-      {/* ========= FEATURES ========= */}
-      <section id="features" className="section alt">
-        <div className="container">
-          {/* centered heading */}
-          <div className="sectionHeading center">
-            <div className="lead">
-              <h2 className="h2">Seamless Bond of Better Customer Satisfaction</h2>
-              <p className="p">Use our best experts to elevate your business to the next level.</p>
-            </div>
-            <a className="pill" href="/services">Explore Features</a>
-          </div>
-
-          <div className="featuresWrap">
-            <Reveal className="fCard f1">
-              <div className="iRing">🚀</div>
-              <div className="fTitle">We Deliver Excellence</div>
-              <div className="fDivider"></div>
-              <p className="fText">Quality-driven outreach, strict QA, and clarity on every call.</p>
-              <a className="fPill" href="/services">Learn More →</a>
-            </Reveal>
-
-            <Reveal className="fCard f2" delay={120}>
-              <div className="iRing">🛡️</div>
-              <div className="fTitle">Policy & Compliance</div>
-              <div className="fDivider"></div>
-              <p className="fText">DNC, GDPR, TCPA-aligned processes with audit-ready trails.</p>
-              <a className="fPill" href="/services">Learn More →</a>
-            </Reveal>
-
-            <Reveal className="fCard f3" delay={200}>
-              <div className="iRing">👥</div>
-              <div className="fTitle">Awesome Team</div>
-              <div className="fDivider"></div>
-              <p className="fText">Experienced SDRs with neutral accents & strong rebuttals.</p>
-              <a className="fPill" href="/services">Learn More →</a>
-            </Reveal>
-
-            <Reveal className="fCard f4" delay={280}>
-              <div className="iRing">⏰</div>
-              <div className="fTitle">24/7 We Work</div>
-              <div className="fDivider"></div>
-              <p className="fText">Follow-the-sun coverage and weekend shifts when needed.</p>
-              <a className="fPill" href="/services">Learn More →</a>
-            </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ========= HOME SERVICES PREVIEW ========= */}
-      <section id="services" className="section">
+      {/* ===== TEAM (tiny) ===== */}
+      <section className="section reveal">
         <div className="container">
-          {/* centered heading */}
-          <div className="sectionHeading center">
-            <div className="lead">
-              <h2 className="h2">Services Built To Book Meetings</h2>
-              <p className="p">Human-first outreach with compliant scripts, QA, and clear reporting.</p>
-            </div>
-            <a className="pill" href="/services">View All Services</a>
+          <h2 className="h2 slim">Team</h2>
+          <p className="p tiny">Experienced SDRs, live QA & dependable coverage.</p>
+          <div className="teamRow">
+            {["Lead SDR","QA Lead","Campaign Manager"].map((r,i)=>(
+              <div className="person" key={i}>
+                <div className="avatar" />
+                <div className="role">{r}</div>
+              </div>
+            ))}
           </div>
-
-          <section className="svcGrid" style={{ marginTop: 22 }}>
-            <Reveal className="svcCard s1">
-              <div className="svcIcon">🎧</div>
-              <h3 className="h3">B2B/B2C Cold Calling</h3>
-              <p className="p">ICP-targeted lists, multi-touch cadence, live objection handling.</p>
-            </Reveal>
-
-            <Reveal className="svcCard s2" delay={120}>
-              <div className="svcIcon">🧭</div>
-              <h3 className="h3">Lead Generation</h3>
-              <p className="p">Research + enrichment to build clean, targeted accounts.</p>
-            </Reveal>
-
-            <Reveal className="svcCard s3" delay={200}>
-              <div className="svcIcon">📅</div>
-              <h3 className="h3">Appointment Setting</h3>
-              <p className="p">We book qualified meetings straight on your calendar.</p>
-            </Reveal>
-
-            <Reveal className="svcCard s4" delay={280}>
-              <div className="svcIcon">💬</div>
-              <h3 className="h3">Customer Support</h3>
-              <p className="p">Inbound voice, chat & email with SLAs and CSAT tracking.</p>
-            </Reveal>
-          </section>
         </div>
       </section>
 
-      {/* ========= TESTIMONIALS ========= */}
-      <Testimonials />
+      {/* ===== TESTIMONIALS ===== */}
+     <section className="reviewSection">
+  <h2 className="sectionTitle">Happy & Satisfied Faces</h2>
+  <p className="sectionSubtitle">Here’s what some of our satisfied clients say</p>
 
-      {/* ========= FAQ ========= */}
-      <section className="section alt" id="help">
+  <div className="reviewCard">
+    <img src="/src/assets/avatars/a1.jpg" alt="Client" className="reviewAvatar" />
+    <h3 className="reviewName">Denver</h3>
+    <p className="reviewRole">
+      Business Developer, <span>Undeads Metaverse</span>
+    </p>
+    <p className="reviewDuration">
+      Duration: <strong>Running for 2 Months</strong>
+    </p>
+
+    <p className="reviewProject">
+      Project: <span>Undeads Metaverse</span>
+    </p>
+
+    <div className="reviewStars">⭐⭐⭐⭐⭐</div>
+
+    <blockquote className="reviewQuote">
+      “We had a great experience working with Green Tech! Their team delivered
+      exactly the kind of organic and active engagement we were hoping for.
+      Clean, professional, and on point.”
+    </blockquote>
+
+    <div className="reviewNav">
+      <button className="navBtn">←</button>
+      <button className="navBtn">→</button>
+    </div>
+  </div>
+</section>
+
+      {/* ===== FAQ ===== */}
+      <section className="section reveal alt">
         <div className="container">
-          <h2 className="h2">FAQs</h2>
-          <FAQ
-            items={[
-              { q: "Is there a free trial available?", a: "We can run a 1–2 week pilot on 50–100 dials to align on ICP & script." },
-              { q: "Can I change my plan later?", a: "Yes. Scale seats up/down monthly; pause seasonally." },
-              { q: "What’s your cancellation policy?", a: "Month-to-month with 14-day notice, or quarterly discounts." },
-              { q: "How does billing work?", a: "Fixed seat fee + optional performance bonus." },
-            ]}
-          />
+          <h2 className="h2 slim">FAQ</h2>
+          <div className="faq">
+            {[
+              {q:"Is there a trial?", a:"Yes—1-2 week pilot to align on ICP & script."},
+              {q:"Month-to-month?", a:"Flexible seats; pause seasonally."},
+              {q:"How billing works?", a:"Fixed seat fee + optional performance bonus."},
+              {q:"Compliance?", a:"GDPR • DNC • TCPA—all covered."},
+            ].map((f,i)=>(
+              <div className="item" key={i} onClick={e=>e.currentTarget.classList.toggle('open')}>
+                <div className="q">{f.q}<span>＋</span></div>
+                <div className="a">{f.a}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ========= CTA ========= */}
-      <section className="section">
-        <div
-          className="container ctaBubble"
-          style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 24, flexWrap: "wrap" }}
-        >
-          <div>
-            <h2 className="h2">Need Experienced Call Center Services?</h2>
-            <p className="p">Let’s launch a compliant, conversion-focused campaign.</p>
+      {/* ===== CTA ===== */}
+      <section className="section reveal">
+        <div className="container">
+          <div className="ctaBubble">
+            <h3 className="h3">Need experienced call center services?</h3>
+            <p className="p tiny">Launch a compliant, conversion-focused campaign.</p>
+            <a className="btn" href="/contact">Talk to us</a>
           </div>
-          <a className="btn" href="/contact">Get Started →</a>
         </div>
       </section>
     </>
   );
 }
-
-export default Home;
