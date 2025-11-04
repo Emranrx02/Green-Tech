@@ -1,7 +1,27 @@
 import callImg from "../assets/call.jpg";
 import Reveal from "../components/Reveal";
 import { services } from "../content/services";
-// avatars are referenced directly in markup where needed
+
+// Import assets so Vite bundles them for production (avoid absolute /src/... paths)
+import a1 from "../assets/avatars/a1.jpg";
+import a2 from "../assets/avatars/a2.jpg";
+import a3 from "../assets/avatars/a3.jpg";
+import a4 from "../assets/avatars/a4.jpg";
+import a5 from "../assets/avatars/a5.jpg";
+import a6 from "../assets/avatars/a6.jpg";
+
+import ceo from "../assets/CEO.jpg";
+import sahid from "../assets/sahid.jpg";
+import wakif from "../assets/wakif.jpeg";
+import female from "../assets/female.jpeg";
+import mahafuz from "../assets/mahafuz.jpeg";
+
+import r1 from "../assets/r1.jpg";
+import r2 from "../assets/r2.jpg";
+import r3 from "../assets/r3.jpg";
+import r4 from "../assets/r4.jpg";
+import r5 from "../assets/r5.jpg";
+import r6 from "../assets/r6.jpg";
 
 export default function Home() {
   return (
@@ -44,15 +64,15 @@ export default function Home() {
 <section className="avatarsSection">
   <Reveal>
     <div className="avatarsRow left">
-      <img className="avatar" src="/src/assets/avatars/a1.jpg" alt="client" />
-      <img className="avatar" src="/src/assets/avatars/a2.jpg" alt="client" />
-      <img className="avatar" src="/src/assets/avatars/a3.jpg" alt="client" />
-      <img className="avatar" src="/src/assets/avatars/a4.jpg" alt="client" />
-      <img className="avatar" src="/src/assets/avatars/a4.jpg" alt="client" />
-      <img className="avatar" src="/src/assets/avatars/a4.jpg" alt="client" />
-      <img className="avatar" src="/src/assets/avatars/a4.jpg" alt="client" />
-      <img className="avatar" src="/src/assets/avatars/a4.jpg" alt="client" />
-      <img className="avatar" src="/src/assets/avatars/a4.jpg" alt="client" />
+      <img className="avatar" src={a1} alt="client" />
+      <img className="avatar" src={a2} alt="client" />
+      <img className="avatar" src={a3} alt="client" />
+      <img className="avatar" src={a4} alt="client" />
+      <img className="avatar" src={a5} alt="client" />
+      <img className="avatar" src={a6} alt="client" />
+      <img className="avatar" src={a4} alt="client" />
+      <img className="avatar" src={a5} alt="client" />
+      <img className="avatar" src={a6} alt="client" />
     </div>
   </Reveal>
 </section>
@@ -116,11 +136,11 @@ export default function Home() {
 
           <div className="teamRow">
             {[
-              { name: "Md Ariful Islam", role: "Founder & CEO\nGreen Tech", img: "/src/assets/ceo.jpg", icons: ["telegram","WhatsApp"] },
-              { name: "Shahid Azad", role: "Head of Lead Generation & Technical", img: "/src/assets/sahid.jpg", icons: ["telegram"] },
-              { name: "Md Tahsinul Hoque Siddiki", role: "Community & Business Developer", img: "/src/assets/wakif.jpeg", icons: ["telegram"] },
-              { name: "Nishat Anjum", role: "Junior Custom Relations Executive", img: "/src/assets/female.jpeg", icons: ["telegram"] },
-              { name: "Mahfuz Rahman", role: "Junior Social Media Manager", img: "/src/assets/mahafuz.jpeg", icons: ["telegram"] }
+              { name: "Md Ariful Islam", role: "Founder & CEO\nGreen Tech", img: ceo, icons: ["telegram","WhatsApp"] },
+              { name: "Shahid Azad", role: "Head of Lead Generation & Technical", img: sahid, icons: ["telegram"] },
+              { name: "Md Tahsinul Hoque Siddiki", role: "Community & Business Developer", img: wakif, icons: ["telegram"] },
+              { name: "Nishat Anjum", role: "Junior Custom Relations Executive", img: female, icons: ["telegram"] },
+              { name: "Mahfuz Rahman", role: "Junior Social Media Manager", img: mahafuz, icons: ["telegram"] }
 
             ].map((p, i) => (
               <article className="person" key={i}>
@@ -153,14 +173,7 @@ export default function Home() {
 
         <div className="reviewGallery">
           <div className="reviewRow">
-            {[
-              "/src/assets/r2.jpg",
-              "/src/assets/r3.jpg",
-              "/src/assets/r4.jpg",
-              "/src/assets/r5.jpg",
-              "/src/assets/r6.jpg",
-              "/src/assets/r1.jpg"
-            ].map((img, i) => (
+            {[r2, r3, r4, r5, r6, r1].map((img, i) => (
               <div className="reviewItem" key={i}>
                 <img src={img} alt={`review-${i}`} />
               </div>
