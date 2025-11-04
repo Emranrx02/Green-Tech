@@ -263,6 +263,99 @@ button{ font:inherit; cursor:pointer }
     text-align:center;
   }
   .heroText{justify-self:center;}
+
+/* ==========================
+   Footer styles
+   ========================== */
+/* ==== FOOTER – cute & minimal ==== */
+.footer{
+  border-top:1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+}
+.footerRow{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px; padding:18px 0;
+}
+
+/* helper: center footer content when simplified to a single line */
+.footerRow.footerCenter{
+  justify-content:center;
+  text-align:center;
+}
+
+/* subtle top divider glow */
+.footer::before{
+  content:""; display:block; height:1px; width:100%;
+  background: linear-gradient(90deg, transparent, var(--brand) 15%, var(--brand2) 85%, transparent);
+  opacity:.08;
+}
+
+/* left copy */
+.copyright{
+  color:var(--muted);
+  font-size:.95rem;
+}
+.copyright a{
+  color:var(--brand2); font-weight:800;
+  position:relative; text-decoration:none;
+}
+.copyright a::after{
+  content:""; position:absolute; left:0; right:0; bottom:-2px; height:2px;
+  background: linear-gradient(90deg, var(--brand2), var(--brand));
+  border-radius:2px; transform:scaleX(0); transform-origin:left;
+  transition:transform .25s ease;
+}
+.copyright a:hover::after{ transform:scaleX(1) }
+
+/* socials */
+.socials{ display:flex; align-items:center; gap:14px }
+.socials a{
+  display:inline-flex; align-items:center; gap:8px; /* icon + label spacing */
+  padding:8px 10px; border-radius:12px;
+  color:#cfe7ff; border:1px solid rgba(255,255,255,.06);
+  background: rgba(255,255,255,.03);
+  transition: transform .18s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+  /* ensure pills don't collapse together if gaps aren't honored */
+  margin-right:6px;
+}
+.socials a:hover{
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, rgba(98,208,255,.12), rgba(108,243,193,.10));
+  border-color: rgba(255,255,255,.14);
+  box-shadow: 0 10px 24px rgba(0,0,0,.28);
+}
+.socials svg{ display:block }
+.slabel{
+  font-weight:800; letter-spacing:.1px; font-size:.92rem;
+  opacity:.95; margin-left:6px; white-space:nowrap; /* keep label attached to its icon */
+}
+
+/* tiny shimmer on hover (accent ring on icons) */
+.socials a:hover svg{
+  filter: drop-shadow(0 0 6px rgba(108,243,193,.45));
+}
+
+/* mobile */
+@media (max-width:700px){
+  .footerRow{ flex-direction:column; align-items:flex-start; gap:12px; padding:16px 0 }
+  .socials{ gap:8px; flex-wrap:wrap }
+  .slabel{ display:none }           /* keep it compact on mobile */
+  .socials a{ padding:8px }         /* icon-only pills */
+}
+/* small screens: stack footer content */
+@media (max-width: 700px){
+  .footerRow{ flex-direction:column; text-align:center; gap:12px }
+  .socials{ justify-content:center }
+  .footer{ padding:22px 0 }
+}
+
+/* very small: reduce padding and font-size */
+@media (max-width: 420px){
+  .footerRow{ padding:0 12px }
+  .footer{ padding:18px 0 }
+  .footerRow{ font-size:0.92rem }
+  .socials a{ padding:8px 10px; font-size:.92rem }
+}
   .heroButtons{justify-content:center; flex-wrap:wrap;}
   .heroImage{margin:0 auto;}
 }
@@ -408,18 +501,27 @@ button{ font:inherit; cursor:pointer }
 
 .person{
   width:100%;
-  background: linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.52));
-  border:1px solid rgba(0,255,166,.03);
+  /* subtle panels to match deep black site background */
+  background: linear-gradient(180deg, rgba(255,255,255,.012), rgba(255,255,255,.008));
+  border:1px solid rgba(255,255,255,.04); /* muted light border instead of bright green */
   border-radius:14px;
   padding:18px 14px; /* reduced padding */
   display:flex; flex-direction:column; align-items:center; text-align:center;
   gap:10px;
-  box-shadow: 0 14px 36px rgba(0,0,0,.55);
+  box-shadow: 0 12px 30px rgba(0,0,0,.6);
   transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
 }
-.person:hover{ transform: translateY(-6px); box-shadow: 0 20px 44px rgba(0,0,0,.62); border-color: rgba(0,255,166,.08) }
+.person:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.7);
+  border-color: rgba(255,255,255,.06);
+}
 
-.person .avatar{ width:96px; height:96px; border-radius:50%; object-fit:cover; border:5px solid #00ffc6; box-shadow: 0 8px 20px rgba(0,0,0,.45); }
+.person .avatar{
+  width:96px; height:96px; border-radius:50%; object-fit:cover;
+  border:4px solid rgba(255,255,255,.06); /* subtle ring instead of neon */
+  box-shadow: 0 6px 18px rgba(0,0,0,.6);
+}
 
 .person .name{ font-weight:900; color:var(--text); font-size:1.05rem; margin-top:6px }
 .person .role{ color:var(--muted); font-size:.95rem; line-height:1.2; white-space:pre-line }
@@ -579,132 +681,64 @@ button{ font:inherit; cursor:pointer }
 /* =========================================
    Companies We Worked With — cute pills + logos
    ========================================= */
-
-.companies{
-  padding: 36px 0 10px;
-}
-
-.companies .h2{
-  margin: 0 0 6px;
-  letter-spacing: .2px;
-}
-
-.companies .sub{
-  color: var(--muted);
-  margin: 0 0 14px;
-  font-size: .98rem;
-}
-
-/* pill list (text names) */
-.logoRow{
-  display:flex; flex-wrap:wrap; gap:12px;
-  align-items:center;
-}
-
-.logoPill{
-  position:relative;
-  display:inline-flex; align-items:center; gap:10px;
-  padding:10px 14px;
-  border-radius:999px;
-  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
-  border:1px solid var(--line);
-  color:#d9e6ff;
-  font-weight:700;
-  letter-spacing:.1px;
-  transition: transform .18s ease, box-shadow .22s ease, background .22s ease, border-color .22s ease;
-  will-change: transform;
-}
-.logoPill:hover{
-  transform: translateY(-3px);
-  background: linear-gradient(90deg, var(--brand2), var(--brand));
-  color:#07161f;
-  border-color: transparent;
-  box-shadow: 0 10px 26px rgba(0,255,198,.16);
-}
-.logoPill::after{
-  /* subtle shine on hover */
-  content:"";
-  position:absolute; inset:0;
-  border-radius:999px;
-  background: radial-gradient(120% 140% at 0% 0%, rgba(255,255,255,.25), rgba(255,255,255,0) 60%);
-  opacity:0; transition:opacity .25s ease;
-  pointer-events:none;
-}
-.logoPill:hover::after{ opacity:.55 }
-
-/* optional logo cards (if you use images) */
-.logoGrid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap:14px; margin-top:14px;
-}
-.logoCard{
-  height:84px; /* increased for clearer logos */
-  display:grid; place-items:center;
-  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-  border:1px solid var(--line);
-  border-radius:14px;
-  transition: transform .18s ease, border-color .22s ease, box-shadow .22s ease;
-}
-.logoCard:hover{
-  transform: translateY(-3px);
-  border-color: rgba(255,255,255,.18);
-  box-shadow: 0 14px 30px rgba(0,0,0,.25);
-}
-.logoCard img{
-  max-height:48px; /* larger logos */
-  opacity:.95; filter: drop-shadow(0 2px 8px rgba(0,0,0,.28));
-}
-
-/* slim divider line (nice separation from hero) */
-.companiesDivider{
-  height:1px; margin:18px 0 14px;
-  background: linear-gradient(90deg, transparent, var(--line), transparent);
-  border-radius:2px;
-}
-
-/* entrance */
-/* ==== Companies / Avatars — one-time entrance from both sides ==== */
-.avatarsSection{
-  position:relative;
-  margin-top:40px;
-  padding:14px 0;
-  overflow:hidden;
-  border-top:1px solid rgba(255,255,255,.06);
-  border-bottom:1px solid rgba(255,255,255,.06);
-  background:radial-gradient(140% 60% at 50% 0%,
-              rgba(98,208,255,.06) 0%, rgba(108,243,193,.05) 40%,
+/* ===== Slim Clients Belt (under Hero) ===== */
+.clientsBelt{
+  margin: 18px auto 6px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  background: radial-gradient(120% 140% at 50% 0%,
+              rgba(98,208,255,.05) 0%, rgba(108,243,193,.04) 40%,
               rgba(0,0,0,0) 100%);
-  display:flex; flex-direction:column; gap:10px;
+  overflow: hidden;
+}
+.beltInner{
+  display: flex; align-items: center; gap: 18px;
+  padding: 0 12px;
 }
 
-/* two rows so it feels like both sides slide in */
-.avatarsRow{
-  display:flex; justify-content:center; align-items:center; gap:28px;
-  will-change:transform,opacity;
+/* uniform logo cards */
+.logoBox{
+  height: 56px; width: 124px; /* all same footprint */
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.28);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
 }
-.avatarsRow.left  { animation: rowInLeft  900ms cubic-bezier(.2,.8,.2,1) both; }
-.avatarsRow.right { animation: rowInRight 900ms cubic-bezier(.2,.8,.2,1) both 120ms; }
-
-@keyframes rowInLeft  { from{opacity:0; transform:translateX(-80px)} to{opacity:1; transform:translateX(0)} }
-@keyframes rowInRight { from{opacity:0; transform:translateX( 80px)} to{opacity:1; transform:translateX(0)} }
-
-.avatar{
-  width:56px; height:56px; border-radius:50%; object-fit:cover;
-  border:2.5px solid rgba(255,255,255,.55);
-  background:rgba(255,255,255,.04);
-  box-shadow:0 6px 16px rgba(0,0,0,.3);
-  transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
+.logoBox img{
+  max-height: 34px; max-width: 92px; object-fit: contain;
+  filter: grayscale(30%) opacity(.9);
+  transition: filter .22s ease;
 }
-.avatar:hover{
-  transform:translateY(-4px) scale(1.08);
-  box-shadow:0 12px 28px rgba(0,255,198,.28);
-  filter:saturate(1.1);
+.logoBox:hover{
+  transform: translateY(-4px);
+  border-color: rgba(0,255,204,.22);
+  background: rgba(255,255,255,.06);
+  box-shadow: 0 10px 24px rgba(0,255,204,.18);
+}
+.logoBox:hover img{ filter: grayscale(0%) opacity(1) }
+
+/* optional: gentle auto-scroll */
+.clientsBelt.marquee .beltInner{
+  gap: 26px;
+  width: max-content;
+  animation: beltScroll 28s linear infinite;
+}
+@keyframes beltScroll{
+  from{ transform: translateX(0) }
+  to{ transform: translateX(-50%) } /* duplicate children to loop */
 }
 
-@media (max-width:700px){
-  .avatar{ width:46px; height:46px }
-  .avatarsRow{ gap:20px }
+/* mobile polish */
+@media (max-width: 680px){
+  .logoBox{ height: 52px; width: 108px }
+  .logoBox img{ max-height: 30px; max-width: 84px }
+  .beltInner{ gap: 14px }
+}
+@media (prefers-reduced-motion: reduce){
+  .clientsBelt.marquee .beltInner{ animation: none }
 }
 
 /* ==== CLIENT REVIEWS (HashHypeLabs Style) ==== */

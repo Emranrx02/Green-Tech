@@ -1,5 +1,5 @@
 // src/pages/Services.jsx
-import { telemarketingIntro, services, logos } from "../content/services";
+import { telemarketingIntro, services } from "../content/services";
 
 export default function Services() {
   return (
@@ -61,19 +61,7 @@ export default function Services() {
         </div>
       </section>
 
-      {/* Logos / Companies Worked With */}
-      <section className="section">
-        <div className="container">
-          <h2 className="h2" style={{ marginBottom: 12 }}>Companies We Worked With</h2>
-          <div className="logoRow">
-            {logos.map((l, i) => (
-              <a href={l.url} key={i} className="logoPill" target="_blank" rel="noreferrer">
-                {l.name}
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Logos / Companies Worked With — removed per request (kept in content if needed later) */}
     </main>
   );
 }

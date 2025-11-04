@@ -3,13 +3,11 @@ import Reveal from "../components/Reveal";
 import { services } from "../content/services";
 
 // Import assets so Vite bundles them for production (avoid absolute /src/... paths)
-import a1 from "../assets/avatars/a1.jpg";
-import a2 from "../assets/avatars/a2.jpg";
-import a3 from "../assets/avatars/a3.jpg";
-import a4 from "../assets/avatars/a4.jpg";
-import a5 from "../assets/avatars/a5.jpg";
-import a6 from "../assets/avatars/a6.jpg";
+import pro1 from "../assets/avatars/pro1.png";
+import pro2 from "../assets/avatars/pro2.png";
 
+import pro3 from "../assets/avatars/pro3.png";
+import pro4 from "../assets/avatars/pro4.png";
 import ceo from "../assets/CEO.jpg";
 import sahid from "../assets/sahid.jpg";
 import wakif from "../assets/wakif.jpeg";
@@ -26,7 +24,7 @@ import r6 from "../assets/r6.jpg";
 export default function Home() {
   return (
     <>
-      {/* ===== HERO ===== */}
+      {/* ===== HERO =====++ */}
       <section className="heroSection">
         <div className="container heroContainer">
           <Reveal className="heroText">
@@ -57,26 +55,23 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
-
       {/* ===== COMPANIES (2nd section) ===== */}
-      {/* ==== Floating Avatars Section ==== */}
+      {/* ==== Clients belt (logos) — uses .clientsBelt CSS from styles/style.css ===== */}
 
-<section className="avatarsSection">
-  <Reveal>
-    <div className="avatarsRow left">
-      <img className="avatar" src={a1} alt="client" />
-      <img className="avatar" src={a2} alt="client" />
-      <img className="avatar" src={a3} alt="client" />
-      <img className="avatar" src={a4} alt="client" />
-      <img className="avatar" src={a5} alt="client" />
-      <img className="avatar" src={a6} alt="client" />
-      <img className="avatar" src={a4} alt="client" />
-      <img className="avatar" src={a5} alt="client" />
-      <img className="avatar" src={a6} alt="client" />
-    </div>
-  </Reveal>
-</section>
-
+      <section className="clientsBelt marquee">
+        <div className="beltInner">
+          {/* Add your logo/image nodes here. Duplicate the set to allow the CSS loop to run smoothly. */}
+          <div className="logoBox"><img src={pro1} alt="logo pro1" /></div>
+          <div className="logoBox"><img src={pro2} alt="logo pro2" /></div>
+          <div className="logoBox"><img src={pro3} alt="logo pro3" /></div>
+          <div className="logoBox"><img src={pro4} alt="logo pro4" /></div>
+          {/* duplicate for seamless loop */}
+          <div className="logoBox"><img src={pro1} alt="logo pro1" /></div>
+          <div className="logoBox"><img src={pro2} alt="logo pro2" /></div>
+          <div className="logoBox"><img src={pro3} alt="logo pro3" /></div>
+          <div className="logoBox"><img src={pro4} alt="logo pro4" /></div>
+        </div>
+      </section>
       {/* ===== CORE SERVICES (cards) ===== */}
    {/* ===== CORE SERVICES ===== */}
 <section className="coreSection section">
