@@ -263,6 +263,57 @@ button{ font:inherit; cursor:pointer }
     text-align:center;
   }
   .heroText{justify-self:center;}
+
+/* ==========================
+   Footer styles
+   ========================== */
+.footer{
+  background: linear-gradient(180deg, rgba(2,16,20,0.92), rgba(4,30,34,0.96));
+  color: rgba(255,255,255,0.9);
+  padding: 28px 0;
+  border-top: 1px solid rgba(255,255,255,0.03);
+}
+.footerRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 24px;
+  font-size:0.95rem;
+}
+.footer a{ color: inherit; text-decoration:underline; text-decoration-color: rgba(255,255,255,0.06); }
+.footer a:hover{ color: #aef3d6; text-decoration-color: rgba(174,243,214,0.25) }
+.footer .copyright{ opacity:0.9 }
+
+.socials{
+  display:flex; gap:10px; align-items:center;
+}
+.socials a{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 12px; border-radius:999px; font-weight:700;
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border:1px solid rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.95);
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.socials a:hover{ transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0,0,0,0.45); background: linear-gradient(90deg, rgba(14,189,140,0.12), rgba(86,200,255,0.06)); color:#001f18 }
+
+/* small screens: stack footer content */
+@media (max-width: 700px){
+  .footerRow{ flex-direction:column; text-align:center; gap:12px }
+  .socials{ justify-content:center }
+  .footer{ padding:22px 0 }
+}
+
+/* very small: reduce padding and font-size */
+@media (max-width: 420px){
+  .footerRow{ padding:0 12px }
+  .footer{ padding:18px 0 }
+  .footerRow{ font-size:0.92rem }
+  .socials a{ padding:8px 10px; font-size:.92rem }
+}
   .heroButtons{justify-content:center; flex-wrap:wrap;}
   .heroImage{margin:0 auto;}
 }
