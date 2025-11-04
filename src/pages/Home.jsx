@@ -24,7 +24,7 @@ import r6 from "../assets/r6.jpg";
 export default function Home() {
   return (
     <>
-      {/* ===== HERO ===== */}
+      {/* ===== HERO =====++ */}
       <section className="heroSection">
         <div className="container heroContainer">
           <Reveal className="heroText">
