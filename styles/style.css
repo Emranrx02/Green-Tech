@@ -426,7 +426,7 @@ button{ font:inherit; cursor:pointer }
 
 .person .title{ color:var(--muted); font-size:.9rem }
 
-.team section tweaks */
+.team section tweaks
 /* team section tweaks */
 .teamSection .h2.slim{ text-align:center; margin-bottom:8px }
 /* ensure the team container centers its children (heading + lead) */
