@@ -681,34 +681,54 @@ button{ font:inherit; cursor:pointer }
 /* =========================================
    Companies We Worked With — cute pills + logos
    ========================================= */
-/* ===== Slim Clients Belt (under Hero) ===== */
+/* ===== Clients belt (single track with duplicated logos) ===== */
 .clientsBelt{
-  margin: 18px auto 6px;
-  padding: 10px 0;
+  position: relative;
+  overflow: hidden;
+  padding-block: 10px;
   border-top: 1px solid rgba(255,255,255,.06);
   border-bottom: 1px solid rgba(255,255,255,.06);
+
+  /* 2 side soft fade */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 60px, #000 calc(100% - 60px), transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 60px, #000 calc(100% - 60px), transparent 100%);
+
   background: radial-gradient(120% 140% at 50% 0%,
-              rgba(98,208,255,.05) 0%, rgba(108,243,193,.04) 40%,
+              rgba(98,208,255,.05) 0%,
+              rgba(108,243,193,.04) 40%,
               rgba(0,0,0,0) 100%);
-  overflow: hidden;
-}
-.beltInner{
-  display: flex; align-items: center; gap: 18px;
-  padding: 0 12px;
 }
 
-/* uniform logo cards */
+/* the moving row */
+.clientsBelt .beltInner{
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 12px;
+
+  /* Important: content decides width so translateX(-50%) matches one full set */
+  width: max-content;
+  animation: beltLoop 28s linear infinite;
+  will-change: transform;
+  white-space: nowrap; /* prevent wrapping so the loop stays continuous */
+}
+
+/* Cards stay same size so speed constant */
 .logoBox{
-  height: 56px; width: 124px; /* all same footprint */
+  width: 124px;              /* fixed footprint */
+  height: 56px;
+  flex: 0 0 124px;
   display: flex; align-items: center; justify-content: center;
   background: rgba(255,255,255,.04);
   border: 1px solid rgba(255,255,255,.08);
   border-radius: 12px;
   box-shadow: 0 6px 16px rgba(0,0,0,.28);
-  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+  transition: transform .22s, box-shadow .22s, border-color .22s, background .22s;
 }
 .logoBox img{
-  max-height: 34px; max-width: 92px; object-fit: contain;
+  max-width: 92px;           /* keeps logos inside nicely */
+  max-height: 34px;
+  object-fit: contain;
   filter: grayscale(30%) opacity(.9);
   transition: filter .22s ease;
 }
@@ -720,25 +740,29 @@ button{ font:inherit; cursor:pointer }
 }
 .logoBox:hover img{ filter: grayscale(0%) opacity(1) }
 
-/* optional: gentle auto-scroll */
-.clientsBelt.marquee .beltInner{
-  gap: 26px;
-  width: max-content;
-  animation: beltScroll 28s linear infinite;
-}
-@keyframes beltScroll{
-  from{ transform: translateX(0) }
-  to{ transform: translateX(-50%) } /* duplicate children to loop */
+/* Seamless loop: we duplicated the logos once in JSX,
+   so translate by exactly half of the total track. */
+@keyframes beltLoop{
+  from { transform: translateX(0) }
+  to   { transform: translateX(-50%) }
 }
 
-/* mobile polish */
-@media (max-width: 680px){
-  .logoBox{ height: 52px; width: 108px }
-  .logoBox img{ max-height: 30px; max-width: 84px }
-  .beltInner{ gap: 14px }
+/* pause on hover for better UX */
+.clientsBelt:hover .beltInner{
+  animation-play-state: paused;
 }
+
+/* Mobile tweaks */
+@media (max-width: 680px){
+  .clientsBelt .beltInner{ gap: 14px }
+  .logoBox{ width: 108px; height: 52px; flex-basis:108px }
+  .logoBox img{ max-width: 84px; max-height: 30px }
+}
+
+/* Motion-safe fallback */
 @media (prefers-reduced-motion: reduce){
-  .clientsBelt.marquee .beltInner{ animation: none }
+  .clientsBelt .beltInner{ animation: none; flex-wrap: wrap; justify-content: center }
+  .clientsBelt{ -webkit-mask-image: none; mask-image: none }
 }
 
 /* ==== CLIENT REVIEWS (HashHypeLabs Style) ==== */
