@@ -495,38 +495,155 @@ button{ font:inherit; cursor:pointer }
 .teamRow{
   display:grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap:20px; /* slightly tighter */
-  margin-top:18px;
+  gap:24px; /* more breathing room for a modern layout */
+  margin-top:28px;
 }
-
+/* Professional floating avatar cards */
 .person{
+  position:relative;
   width:100%;
-  /* subtle panels to match deep black site background */
-  background: linear-gradient(180deg, rgba(255,255,255,.012), rgba(255,255,255,.008));
-  border:1px solid rgba(255,255,255,.04); /* muted light border instead of bright green */
-  border-radius:14px;
-  padding:18px 14px; /* reduced padding */
+  background: linear-gradient(180deg, rgba(255,255,255,.018), rgba(255,255,255,.008));
+  border: 1px solid rgba(255,255,255,.04);
+  border-radius:16px;
+  padding:46px 20px 22px; /* top padding makes room for the overlapping avatar */
   display:flex; flex-direction:column; align-items:center; text-align:center;
   gap:10px;
-  box-shadow: 0 12px 30px rgba(0,0,0,.6);
-  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  box-shadow: 0 12px 36px rgba(3,10,20,.6);
+  transition: transform .26s cubic-bezier(.2,.9,.2,1), box-shadow .26s ease, border-color .22s ease;
+  overflow:visible;
 }
+
+.person::after{
+  /* subtle dotted texture to add depth (very light) */
+  content:""; position:absolute; inset:0; border-radius:16px; pointer-events:none;
+  background: radial-gradient(circle at 10% 20%, rgba(255,255,255,.002), transparent 12%);
+  mix-blend-mode: overlay; opacity:.9;
+}
+
 .person:hover{
-  transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(0,0,0,.7);
-  border-color: rgba(255,255,255,.06);
+  transform: translateY(-10px);
+  box-shadow: 0 34px 80px rgba(2,8,24,.66);
+  border-color: rgba(98,208,255,.10);
 }
 
+/* avatar overlaps the top of the card for a premium feel */
 .person .avatar{
-  width:96px; height:96px; border-radius:50%; object-fit:cover;
-  border:4px solid rgba(255,255,255,.06); /* subtle ring instead of neon */
-  box-shadow: 0 6px 18px rgba(0,0,0,.6);
+  position:absolute; top:-44px; left:50%; transform:translateX(-50%);
+  width:92px; height:92px; border-radius:50%; object-fit:cover;
+  border:5px solid rgba(255,255,255,.08);
+  box-shadow: 0 12px 30px rgba(0,0,0,.6), 0 0 18px rgba(98,208,255,.035) inset;
+  background: linear-gradient(180deg, rgba(0,0,0,.06), rgba(255,255,255,.02));
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
 }
 
-.person .name{ font-weight:900; color:var(--text); font-size:1.05rem; margin-top:6px }
-.person .role{ color:var(--muted); font-size:.95rem; line-height:1.2; white-space:pre-line }
+.person:hover .avatar{ transform: translateX(-50%) scale(1.06); border-color: rgba(108,243,193,.20); box-shadow: 0 18px 44px rgba(0,0,0,.72), 0 0 32px rgba(108,243,193,.045) inset; }
+
+.person .name{
+  margin-top:46px; /* push down below avatar */
+  font-weight:900; color:var(--text); font-size:1.06rem; letter-spacing:.2px;
+}
+.person .role{
+  color:var(--muted); font-size:.96rem; line-height:1.35; white-space:pre-line; text-align:center; margin-top:6px;
+}
 
 .person .title{ color:var(--muted); font-size:.9rem }
+
+/* small contact/action icon styling kept subtle */
+.person .contactIcons{ position:relative; margin-top:12px; display:flex; gap:8px }
+.person .iconBtn{ width:36px; height:36px; border-radius:10px; padding:6px }
+
+/* responsive: stack into fewer columns on smaller screens */
+@media (max-width:1280px){ .teamRow{ grid-template-columns: repeat(3, minmax(0, 1fr)); gap:20px } }
+@media (max-width:1024px){ .teamRow{ grid-template-columns: repeat(2, minmax(0, 1fr)); gap:18px } }
+@media (max-width:640px){
+  .teamRow{ grid-template-columns:1fr; gap:18px }
+  .person{ padding:56px 16px 20px }
+  .person .avatar{ top:-48px; width:96px; height:96px }
+  .person .name{ margin-top:52px }
+}
+
+/* Mobile override: make team cards stack cleanly and avoid large gaps from absolute avatars */
+@media (max-width:640px){
+  .person{
+    padding:18px 16px; /* remove large top padding used for overlapping avatar on desktop */
+    margin: 12px 0;    /* small spacing between stacked cards */
+  }
+  .person .avatar{
+    position: static !important; /* flow avatar inside the card on mobile */
+    display:block; margin: 0 auto 10px; transform:none !important; top:auto !important; left:auto !important;
+    width:92px; height:92px; border-width:4px;
+  }
+  .person .name{ margin-top:8px }
+  .person::after{ display:none } /* reduce visual noise on small screens */
+}
+
+/* Mobile entrance animation (staggered) for team cards */
+@keyframes teamPop {
+  from { opacity: 0; transform: translateY(10px) scale(.995); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width:640px){
+  .teamRow .person{ opacity:0; transform:translateY(8px); }
+  .teamRow .person{ animation: teamPop .46s cubic-bezier(.2,.9,.2,1) forwards; }
+  .teamRow .person:nth-child(1){ animation-delay: .06s }
+  .teamRow .person:nth-child(2){ animation-delay: .12s }
+  .teamRow .person:nth-child(3){ animation-delay: .18s }
+  .teamRow .person:nth-child(4){ animation-delay: .24s }
+  .teamRow .person:nth-child(5){ animation-delay: .30s }
+}
+
+/* --------------------------------------------------
+   Scroll-triggered "cute" pop animation for team cards
+   Uses the existing Reveal wrapper which toggles `.is-visible`.
+   We animate the wrapper (not the inner article) so layout stays stable.
+-------------------------------------------------- */
+@keyframes teamCute {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(.96) rotate(-2deg);
+    filter: blur(2px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.06) rotate(1.2deg);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0);
+    filter: none;
+  }
+}
+
+/* initial state for Reveal wrappers inside the teamRow */
+.teamRow .reveal.personReveal{
+  opacity: 0;
+  transform: translateY(18px) scale(.98) rotate(-1deg);
+  will-change: transform, opacity;
+}
+
+.teamRow .reveal.personReveal.is-visible{
+  animation: teamCute .64s cubic-bezier(.2,.9,.2,1) both;
+}
+
+/* Staggered delays to make the entrance feel playful and organic */
+.teamRow .reveal.personReveal:nth-child(1){ animation-delay: .06s }
+.teamRow .reveal.personReveal:nth-child(2){ animation-delay: .12s }
+.teamRow .reveal.personReveal:nth-child(3){ animation-delay: .18s }
+.teamRow .reveal.personReveal:nth-child(4){ animation-delay: .24s }
+.teamRow .reveal.personReveal:nth-child(5){ animation-delay: .30s }
+.teamRow .reveal.personReveal:nth-child(6){ animation-delay: .36s }
+.teamRow .reveal.personReveal:nth-child(7){ animation-delay: .42s }
+.teamRow .reveal.personReveal:nth-child(8){ animation-delay: .48s }
+
+/* Ensure inner article doesn't double-animate on mobile — if wrapper is used, suppress the old per-article load animation. */
+.teamRow .reveal.personReveal .person{ opacity:1 !important; animation:none !important; transform:none !important }
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce){
+  .teamRow .reveal.personReveal, .teamRow .reveal.personReveal.is-visible{ animation:none !important; transform:none !important; opacity:1 !important }
+}
 
 .team section tweaks
 /* team section tweaks */
@@ -681,88 +798,89 @@ button{ font:inherit; cursor:pointer }
 /* =========================================
    Companies We Worked With — cute pills + logos
    ========================================= */
-/* ===== Clients belt (single track with duplicated logos) ===== */
+/* ===== Clients belt (absolute track implementation) ===== */
+/* Belt container */
 .clientsBelt{
   position: relative;
+  height: 72px;                 /* belt height */
   overflow: hidden;
-  padding-block: 10px;
   border-top: 1px solid rgba(255,255,255,.06);
   border-bottom: 1px solid rgba(255,255,255,.06);
-
-  /* 2 side soft fade */
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 60px, #000 calc(100% - 60px), transparent 100%);
-          mask-image: linear-gradient(90deg, transparent 0, #000 60px, #000 calc(100% - 60px), transparent 100%);
-
   background: radial-gradient(120% 140% at 50% 0%,
               rgba(98,208,255,.05) 0%,
               rgba(108,243,193,.04) 40%,
               rgba(0,0,0,0) 100%);
+  /* optional soft fades; remove if you want NO fades */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
 }
 
-/* the moving row */
-.clientsBelt .beltInner{
+/* Each moving track */
+.beltTrack{
+  position: absolute;
+  inset: 0 auto 0 0;            /* top:0; bottom:0; left:0 */
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 26px; /* increased gap for airier spacing between logo cards */
   padding: 0 12px;
-
-  /* Important: content decides width so translateX(-50%) matches one full set */
-  width: max-content;
-  animation: beltLoop 28s linear infinite;
+  width: max-content;           /* as wide as content */
   will-change: transform;
-  white-space: nowrap; /* prevent wrapping so the loop stays continuous */
+  /* slowed down for a calmer feel */
+  animation: beltSlide 36s linear infinite;
 }
 
-/* Cards stay same size so speed constant */
+/* Track B starts immediately after Track A */
+.beltTrack.clone{
+  left: 100%;
+}
+
+/* One cycle slides exactly one full track width */
+@keyframes beltSlide{
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+/* Uniform logo cards so speed stays constant */
 .logoBox{
-  width: 124px;              /* fixed footprint */
-  height: 56px;
-  flex: 0 0 124px;
+  /* slightly larger card to give logos more presence */
+  width: 132px; height: 64px; flex: 0 0 132px;
   display: flex; align-items: center; justify-content: center;
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(255,255,255,.035);
+  border: 2px solid rgba(255,255,255,.10); /* thicker border for more weight */
   border-radius: 12px;
-  box-shadow: 0 6px 16px rgba(0,0,0,.28);
+  box-shadow: 0 8px 20px rgba(0,0,0,.32);
   transition: transform .22s, box-shadow .22s, border-color .22s, background .22s;
 }
 .logoBox img{
-  max-width: 92px;           /* keeps logos inside nicely */
-  max-height: 34px;
-  object-fit: contain;
-  filter: grayscale(30%) opacity(.9);
-  transition: filter .22s ease;
+  max-width: 100px; max-height: 40px; object-fit: contain;
+  filter: grayscale(20%) opacity(.95);
+  transition: filter .22s;
 }
-.logoBox:hover{
-  transform: translateY(-4px);
-  border-color: rgba(0,255,204,.22);
-  background: rgba(255,255,255,.06);
-  box-shadow: 0 10px 24px rgba(0,255,204,.18);
-}
+.logoBox:hover{ transform: translateY(-4px); border-color: rgba(0,255,204,.22); background: rgba(255,255,255,.06); box-shadow: 0 10px 24px rgba(0,255,204,.18) }
 .logoBox:hover img{ filter: grayscale(0%) opacity(1) }
 
-/* Seamless loop: we duplicated the logos once in JSX,
-   so translate by exactly half of the total track. */
-@keyframes beltLoop{
-  from { transform: translateX(0) }
-  to   { transform: translateX(-50%) }
-}
-
-/* pause on hover for better UX */
-.clientsBelt:hover .beltInner{
-  animation-play-state: paused;
-}
-
-/* Mobile tweaks */
+/* Mobile */
 @media (max-width: 680px){
-  .clientsBelt .beltInner{ gap: 14px }
-  .logoBox{ width: 108px; height: 52px; flex-basis:108px }
-  .logoBox img{ max-width: 84px; max-height: 30px }
+  .clientsBelt{ height: 64px; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%); }
+  .logoBox{ width:108px; height:52px; flex-basis:108px }
+  .logoBox img{ max-width:84px; max-height:30px }
 }
 
-/* Motion-safe fallback */
+/* Invisible spacer used between duplicated sets so identical logos
+   from the end/start of adjacent tracks don't appear side-by-side */
+.logoSpacer{
+  /* use a CSS var so the spacing is easy to tweak site-wide */
+  width: var(--logo-spacer, 20px); /* slightly larger spacer so end/start logos don't feel cramped */
+  flex: 0 0 var(--logo-spacer, 20px);
+  pointer-events: none;
+  background: transparent;
+}
+
+/* Motion-safe */
 @media (prefers-reduced-motion: reduce){
-  .clientsBelt .beltInner{ animation: none; flex-wrap: wrap; justify-content: center }
-  .clientsBelt{ -webkit-mask-image: none; mask-image: none }
+  .beltTrack, .beltTrack.clone{ animation: none; position: static }
+  .clientsBelt{ -webkit-mask-image:none; mask-image:none }
+  .clientsBelt{ display:flex; gap:14px; flex-wrap:wrap; justify-content:center }
 }
 
 /* ==== CLIENT REVIEWS (HashHypeLabs Style) ==== */
@@ -946,6 +1064,23 @@ button{ font:inherit; cursor:pointer }
   .faq .q{ padding:12px }
   .faq .a{ font-size:.98rem }
 }
+
+/* ===== FAQ — visual polish & sizing tweaks ===== */
+/* make the FAQ section heading more prominent and centered */
+.section.reveal.alt > .container > .h2.slim{
+  text-align: center;
+  font-size: clamp(26px, 4vw, 44px);
+  margin-bottom: 18px;
+  letter-spacing: 0.6px;
+}
+
+/* slightly larger question text and clearer answer copy for readability */
+.faq .q{ font-size: clamp(18px, 2.2vw, 22px); padding:16px 18px }
+.faq .a{ font-size: clamp(15px, 1.8vw, 18px); color:var(--muted); }
+
+/* ensure the container for the FAQ is centered (keeps heading and accordion centered) */
+.section.reveal.alt > .container{ display:flex; flex-direction:column; align-items:center; }
+
 
 /* make logos slightly smaller on narrow screens to avoid crowding */
 @media (max-width:700px){
@@ -1176,44 +1311,221 @@ button{ font:inherit; cursor:pointer }
 /* ===== CTA BUBBLE (centered, polished) ===== */
 .ctaBubble{
   max-width:920px;
-  margin:36px auto;
-  padding:28px 30px;
-  display:flex;
-  flex-direction:column;
+  margin:22px auto;
+  padding:16px 18px;
+  display:grid;
+  grid-template-columns: 1fr auto;
   align-items:center;
-  text-align:center;
   gap:12px;
-  background: linear-gradient(135deg, #0fb288 0%, #057a5e 100%);
+  background: linear-gradient(135deg, #12b987 0%, #0b7f62 100%);
   color: #ffffff;
-  border-radius:14px;
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: 0 18px 40px rgba(2,40,30,0.28);
+  border-radius:12px;
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: 0 12px 30px rgba(3,12,18,0.28), 0 2px 6px rgba(0,0,0,0.22) inset;
   transform: translateY(0);
-  transition: transform .22s ease, box-shadow .22s ease;
+  transition: transform .18s ease, box-shadow .18s ease;
+  position:relative;
 }
-.ctaBubble:hover{ transform: translateY(-6px); box-shadow: 0 26px 56px rgba(2,40,30,0.32); }
-.ctaBubble .h3{ color: #fff; margin:0; font-size:1.5rem; line-height:1.12; font-weight:800 }
-.ctaBubble .p{ color: rgba(255,255,255,0.92); margin:0 0 6px; opacity:0.95 }
-.ctaBubble .btn{ margin-top:6px; padding:12px 20px; border-radius:10px; background:#003825; color:#fff; border:1px solid rgba(255,255,255,0.06); box-shadow: 0 8px 18px rgba(0,0,0,0.18); }
-.ctaBubble .btn:hover{ transform: translateY(-2px); box-shadow: 0 12px 26px rgba(0,0,0,0.22); }
+.ctaBubble::before{
+  content:"";
+  position:absolute;
+  left:14px; top:8px; bottom:8px;
+  width:32%; border-radius:10px; z-index:0;
+  background: radial-gradient(420px 100px at 8% 40%, rgba(255,255,255,0.04), rgba(0,0,0,0) 40%);
+  filter: blur(10px); opacity:0.06; pointer-events:none;
+}
+.ctaBubble:hover{ transform: translateY(-2px); box-shadow: 0 18px 48px rgba(2,40,30,0.32); }
+.ctaBubble .h3{ color: #fff; margin:0; font-size:clamp(16px,2.6vw,24px); line-height:1.06; font-weight:900; z-index:1 }
+.ctaBubble .p{ color: rgba(255,255,255,0.92); margin:0; opacity:0.95; z-index:1; font-size:0.95rem }
 
-/* On larger screens give the CTA a left-text / right-button layout while keeping centered block overall */
+/* smaller compact button on the right */
+.ctaBubble .btn{
+  display:inline-grid; place-items:center;
+  min-width:86px; height:44px; padding:0 14px; border-radius:10px;
+  background: linear-gradient(180deg, #04372a 0%, #063b2c 100%);
+  color:#ffffff; font-weight:900; font-size:0.88rem;
+  border: 1px solid rgba(0,0,0,0.24);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.42), 0 4px 12px rgba(0,0,0,0.18) inset;
+  transform: translateY(0);
+  transition: transform .14s ease, box-shadow .14s ease, opacity .14s;
+  z-index:2;
+}
+.ctaBubble .btn:hover{ transform: translateY(-2px); box-shadow: 0 20px 36px rgba(0,0,0,0.46); }
+.ctaBubble .btn:active{ transform: translateY(-1px) scale(.998); }
+
+/* tiny accent shadow behind button */
+.ctaBubble .btn::after{ content:""; position:absolute; inset:auto -4px -8px auto; width:100%; height:4px; background:linear-gradient(90deg, rgba(0,0,0,0.28), rgba(0,0,0,0.12)); filter:blur(4px); z-index:-1; border-radius:4px; }
+
 @media (min-width: 920px){
-  .ctaBubble{ flex-direction:row; justify-content:space-between; align-items:center; padding:30px 36px; }
-  .ctaBubble .h3{ font-size:1.35rem; text-align:left }
+  .ctaBubble{ grid-template-columns: 1fr auto; padding:18px 20px; }
+  .ctaBubble .h3{ text-align:left }
   .ctaBubble .p{ text-align:left; margin-left:6px }
 }
 
-/* Small screens: full-width button and slightly reduced padding */
 @media (max-width:640px){
-  .ctaBubble{ padding:20px; margin:24px 12px; border-radius:12px }
-  .ctaBubble .btn{ width:100%; padding:12px; }
+  .ctaBubble{ grid-template-columns: 1fr; padding:12px; gap:8px }
+  .ctaBubble::before{ display:none }
+  .ctaBubble .btn{ width:100%; height:42px; font-size:0.9rem }
+  .ctaBubble .h3{ font-size:1rem; text-align:center }
+  .ctaBubble .p{ text-align:center; font-size:0.92rem }
 }
 
-/* Respect reduced motion for CTA hover lifts */
 @media (prefers-reduced-motion: reduce){
   .ctaBubble, .ctaBubble .btn{ transition:none !important; transform:none !important }
 }
+
+/* ==== Reviews V2 – floating neon cards (desktop) + swipe carousel (mobile) ==== */
+
+/* layout */
+.rv-wrap{ display:flex; flex-direction:column; align-items:center; text-align:center }
+.rv-center{ width:100%; display:flex; flex-direction:column; align-items:center; gap:14px }
+
+/* cute boxed card */
+.rv-card.large{
+  max-width: 720px;
+  width: min(92vw, 720px);
+  margin: 0 auto;
+}
+.rv-card.cute{
+  position:relative;
+  padding: 22px 22px 24px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 18px 44px rgba(0,0,0,.35);
+  overflow:hidden;
+}
+.rv-card.cute::before{
+  content:""; position:absolute; inset:-20% -10% auto -10%; height:120px;
+  background: radial-gradient(120px 60px at 50% 0, rgba(108,243,193,.18), transparent 70%);
+  filter: blur(24px); opacity:.45; pointer-events:none;
+}
+.rv-toprow{
+  display:flex; justify-content:space-between; align-items:center;
+  gap:10px; margin-bottom:8px; color:#cfe7ff; font-weight:800;
+}
+.rv-project strong{ color:#8bf0d5 }
+.rv-country{ padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08) }
+
+.rv-stars{ font-size:1.15rem; margin:6px 0 8px; color:#ffd96a }
+.rv-quote{ color:#dbe8ff; line-height:1.6; margin:6px 0 0 }
+
+/* bottom nav — arrows centered, no counter */
+.rv-bottomNav.only-arrows{
+  display:flex; align-items:center; justify-content:center; gap:12px;
+}
+.navBtn{
+  background: linear-gradient(135deg, var(--brand2), var(--brand));
+  color:#012020; border:none; padding:10px 14px; border-radius:12px;
+  font-weight:900; cursor:pointer; transition: transform .2s ease, box-shadow .2s ease;
+  box-shadow: 0 10px 24px rgba(0,255,204,.25);
+}
+.navBtn:hover{ transform: translateY(-2px); box-shadow: 0 14px 30px rgba(0,255,204,.32) }
+
+/* slide animations */
+.slide-next{ animation: rv-slide-in-left .42s cubic-bezier(.2,.8,.2,1) both }
+.slide-prev{ animation: rv-slide-in-right .42s cubic-bezier(.2,.8,.2,1) both }
+@keyframes rv-slide-in-left{
+  from{ opacity:0; transform: translateX(24px) scale(.98) }
+  to  { opacity:1; transform: translateX(0)     scale(1) }
+}
+@keyframes rv-slide-in-right{
+  from{ opacity:0; transform: translateX(-24px) scale(.98) }
+  to  { opacity:1; transform: translateX(0)      scale(1) }
+}
+
+/* mobile */
+@media (max-width:720px){
+  .rv-card.large{ width:min(94vw,560px); padding:18px 16px 22px }
+  .rv-toprow{ flex-direction:column; gap:8px }
+  .rv-country{ align-self:center }
+}
+
+
+
+
+
+
+/* Side navigation when showing single large card */
+.rv-grid.single{ position:relative; display:flex; justify-content:center; align-items:center }
+.rv-sideNav{ position:absolute; right:18px; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:12px; z-index:5 }
+.rv-sideNav .navBtn{ width:48px; height:48px; border-radius:10px; background:var(--brand2); color:#001b1a; font-weight:900; border:none; box-shadow: 0 16px 36px rgba(0,0,0,0.48); cursor:pointer }
+
+@media (max-width:700px){
+  .rv-sideNav{ right:8px; top:auto; bottom:8px; flex-direction:row }
+  .rv-sideNav .navBtn{ width:40px; height:40px }
+}
+
+/* Subtle continuous float on desktop */
+@keyframes rv-float {
+  0%   { transform: translateY(-6px) }
+  100% { transform: translateY(6px) }
+}
+@media (min-width: 700px){
+  .rv-card { animation: rv-float 6s ease-in-out infinite alternate }
+  .rv-card.d2 { animation-delay: .6s }
+  .rv-card.d3 { animation-delay: 1.2s }
+  .rv-card.d4 { animation-delay: 1.8s }
+  .rv-card.d5 { animation-delay: 2.4s }
+  .rv-card.d6 { animation-delay: 3.0s }
+}
+
+/* ===== Mobile: horizontal swipe carousel ===== */
+@media (max-width: 700px){
+  .rv-grid{
+    display: flex; gap: 14px; padding: 8px 12px 2px;
+    overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+  }
+  .rv-grid::-webkit-scrollbar{ height: 8px }
+  .rv-grid::-webkit-scrollbar-thumb{
+    background: rgba(255,255,255,.12); border-radius: 8px
+  }
+  .rv-card{
+    flex: 0 0 82%; max-width: 82%;
+    scroll-snap-align: center;
+    transform: none;                 /* fixed offsets remove */
+    animation: none;
+  }
+}
+
+/* Accessibility: motion safe */
+@media (prefers-reduced-motion: reduce){
+  .rv-card{ animation: none !important; transform: none !important }
+}
+
+
+
+
+.ctaBubble::after{
+  /* soft vertical gradient accent on the right edge */
+  content:""; position:absolute; right:-20%; top:0; bottom:0; width:40%;
+  background: linear-gradient(90deg, transparent 0%, rgba(98,208,255,0.02) 30%, rgba(108,243,193,0.03) 60%, transparent 100%);
+  pointer-events:none; transform:translateZ(0);
+}
+
+.ctaBubble .h3{
+  margin:0 0 6px 0; color:var(--brand2);
+  font-size:clamp(28px,5vw,48px); font-weight:900; line-height:1.02;
+  text-shadow: 0 8px 28px rgba(98,208,255,0.06), 0 2px 8px rgba(0,0,0,0.35);
+}
+
+.ctaBubble .ctaText{ z-index:1 }
+.ctaBubble .ctaText p{ margin:8px 0; color:var(--muted); font-size:1.02rem; line-height:1.65 }
+
+.ctaPill{
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:160px; height:56px; padding:0 28px; border-radius:999px;
+  background: linear-gradient(90deg, var(--brand2), var(--brand));
+  color:#001b1a; font-weight:900; font-size:1.05rem; letter-spacing:.2px;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 32px 70px rgba(2,40,30,0.45), 0 8px 18px rgba(0,0,0,0.28) inset;
+  transition: transform .22s cubic-bezier(.2,.9,.2,1), box-shadow .22s ease;
+  z-index:2;
+}
+.ctaPill:hover{ transform: translateY(-6px); box-shadow: 0 46px 110px rgba(98,208,255,0.12), 0 10px 28px rgba(0,0,0,0.36) inset }
+.ctaPill:active{ transform: translateY(-3px) }
+
 
 /* Responsive */
 @media (max-width:1000px){
@@ -1223,88 +1535,88 @@ button{ font:inherit; cursor:pointer }
   .coreGrid{ grid-template-columns: 1fr }
 }
 
-/* ===== MOBILE TIGHT PACK — paste at end ===== */
-
-/* Small phones */
-@media (max-width: 480px){
-
-  /* Global spacing */
-  .container{ padding:16px }
-  .section{ padding:48px 0 }           /* default 72 → 48 */
-
-  /* Navbar */
-  .navBar{ padding:10px 12px }
-  .brand img{ width:24px; height:24px }
-
-  /* HERO */
-  .heroSection{ padding:56px 0 22px }   /* top gap কমালাম */
-  .heroContainer{ padding:0 14px; gap:18px }
-
-  .heroBadge{
-    font-size:12px; padding:6px 10px;
-    margin-bottom:8px;
-  }
-
-  .heroTitle{
-    font-size:28px;                     /* clamp fallback */
-    line-height:1.18;
-    margin-bottom:10px;
-  }
-
-  .heroLead{
-    font-size:0.98rem;
-    line-height:1.55;
-    margin:0 0 12px;
-  }
-
-  .heroButtons{
-    gap:10px; margin:8px 0 10px;
-    flex-wrap:nowrap;
-  }
-  .heroButtons .btn{
-    padding:10px 14px;                  /* smaller btn */
-    border-radius:10px;
-  }
-  .btn.ghost{ padding:10px 12px }
-
-  .heroChips{
-    gap:6px;
-  }
-  .heroChips li{
-    padding:7px 10px;
-    font-size:.82rem;
-  }
-
-  .heroVisual{ justify-self:center }
-  .heroImage{
-    width:100%;
-    max-width:360px;                    /* image ছোট */
-    border-radius:16px;
-    box-shadow:0 12px 26px rgba(0,0,0,.35);
-  }
-  .heroImage img{ border-radius:12px }
-
-  /* Companies / avatar rails */
-  .logoRailWrap{ padding:8px }
-  .logoPill{ padding:8px 12px; font-size:.9rem }
-  .avatar{ width:44px; height:44px }
+/* ===== Center CTA (Ready to Launch) ===== */
+.ctaCenter{
+  padding: 34px 16px 40px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
 }
 
-/* Very small (SE, old Android) */
-@media (max-width: 360px){
-  .heroSection{ padding:48px 0 18px }
-  .heroTitle{ font-size:26px }
-  .heroLead{ font-size:.95rem }
-  .heroButtons .btn{ padding:9px 12px; font-size:.95rem }
-  .heroChips li{ font-size:.78rem; padding:6px 9px }
-  .heroImage{ max-width:320px }
+.ctaCard{
+  --ring: rgba(108,243,193,.14);
+  --ring2: rgba(98,208,255,.12);
+  width: 100%;
+  max-width: 920px;
+  padding: 22px 22px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.08);
+  background:
+    radial-gradient(120% 140% at 0% 0%, var(--ring) 0%, transparent 60%),
+    radial-gradient(120% 140% at 100% 100%, var(--ring2) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+  box-shadow: 0 20px 48px rgba(0,0,0,.35);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
 
-/* Medium phones (landscape / bigger notch phones) */
-@media (min-width:481px) and (max-width: 700px){
-  .section{ padding:56px 0 }
-  .heroSection{ padding:68px 0 28px }
-  .heroContainer{ padding:0 18px; gap:22px }
-  .heroTitle{ font-size:32px }
-  .heroImage{ max-width:420px }
+/* text */
+.ctaText{ max-width: 680px }
+.ctaTitle{
+  margin: 0 0 6px;
+  font-size: clamp(20px, 3.2vw, 26px);
+  font-weight: 900;
+  letter-spacing: .2px;
+  background: linear-gradient(90deg, var(--brand2), var(--brand));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.ctaSub{
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: clamp(.96rem, 1.8vw, 1.02rem);
+}
+
+/* button (re-uses your .btn look, slight tweak for focus/hover) */
+.ctaBtn{
+  white-space: nowrap;
+  border-radius: 12px;
+  padding: 12px 18px;
+  box-shadow: 0 10px 24px rgba(0,255,204,.22);
+  transition: transform .18s ease, box-shadow .22s ease, opacity .2s ease;
+}
+.ctaBtn:hover{ transform: translateY(-2px) }
+.ctaBtn:active{ transform: translateY(0) scale(.99) }
+
+/* subtle hover glow on the whole card */
+.ctaCard:hover{
+  box-shadow: 0 28px 64px rgba(0,0,0,.45);
+  border-color: rgba(255,255,255,.12);
+}
+
+/* ===== Mobile behavior ===== */
+@media (max-width: 720px){
+  .ctaCard{
+    padding: 18px 16px;
+    border-radius: 14px;
+    flex-direction: column;            /* stack */
+    align-items: center;
+    text-align: center;                /* center text */
+    gap: 12px;
+  }
+  .ctaText{ max-width: 100% }
+  .ctaBtn{ width: 100% }               /* full-width button for thumb reach */
+}
+
+/* Very small phones */
+@media (max-width: 420px){
+  .ctaCenter{ padding: 26px 12px 32px }
+  .ctaCard{ padding: 16px 14px; border-radius: 12px }
+}
+
+/* Motion preference */
+@media (prefers-reduced-motion: reduce){
+  .ctaBtn, .ctaCard{ transition: none !important }
 }

@@ -1,27 +1,28 @@
 import callImg from "../assets/call.jpg";
 import Reveal from "../components/Reveal";
 import { services } from "../content/services";
+import ReviewsV2 from "../components/ReviewsV2";
 
 // Import assets so Vite bundles them for production (avoid absolute /src/... paths)
-import pro1 from "../assets/avatars/pro1.png";
-import pro2 from "../assets/avatars/pro2.png";
+import pro1 from "../assets/avatars/pro1.jpeg";
+import pro2 from "../assets/avatars/pro2.jpeg";
 
-import pro3 from "../assets/avatars/pro3.png";
-import pro4 from "../assets/avatars/pro4.png";
+import pro3 from "../assets/avatars/pro3.jpeg";
+import pro4 from "../assets/avatars/pro4.jpeg";
+import pro5 from "../assets/avatars/pro5.jpeg";
+// pro6 was removed from assets; do not import
 import ceo from "../assets/CEO.jpg";
 import sahid from "../assets/sahid.jpg";
 import wakif from "../assets/wakif.jpeg";
 import female from "../assets/female.jpeg";
 import mahafuz from "../assets/mahafuz.jpeg";
 
-import r1 from "../assets/r1.jpg";
-import r2 from "../assets/r2.jpg";
-import r3 from "../assets/r3.jpg";
-import r4 from "../assets/r4.jpg";
-import r5 from "../assets/r5.jpg";
-import r6 from "../assets/r6.jpg";
 
 export default function Home() {
+
+  // Create a rotated version of the sequence for the cloned track so
+  // identical logos don't appear side-by-side when one track meets the other.
+  // Shift by at least 1; using half the unique logos gives a good visual offset.
   return (
     <>
       {/* ===== HERO =====++ */}
@@ -55,24 +56,26 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
-      {/* ===== COMPANIES (2nd section) ===== */}
-      {/* ==== Clients belt (logos) — uses .clientsBelt CSS from styles/style.css ===== */}
+<section className="clientsBelt">
+  <div className="beltTrack">
+    <div className="logoBox"><img src={pro1} alt="client" /></div>
+    <div className="logoBox"><img src={pro2} alt="client" /></div>
+    <div className="logoBox"><img src={pro3} alt="client" /></div>
+    <div className="logoBox"><img src={pro4} alt="client" /></div>
+    <div className="logoBox"><img src={pro5} alt="client" /></div>
+  <div className="logoBox"><img src={pro1} alt="client" /></div>
 
-      <section className="clientsBelt marquee">
-        <div className="beltInner">
-          {/* Add your logo/image nodes here. Duplicate the set to allow the CSS loop to run smoothly. */}
-          <div className="logoBox"><img src={pro1} alt="logo pro1" /></div>
-          <div className="logoBox"><img src={pro2} alt="logo pro2" /></div>
-          <div className="logoBox"><img src={pro3} alt="logo pro3" /></div>
-          <div className="logoBox"><img src={pro4} alt="logo pro4" /></div>
-          {/* duplicate for seamless loop */}
-          <div className="logoBox"><img src={pro1} alt="logo pro1" /></div>
-          <div className="logoBox"><img src={pro2} alt="logo pro2" /></div>
-          <div className="logoBox"><img src={pro3} alt="logo pro3" /></div>
-          <div className="logoBox"><img src={pro4} alt="logo pro4" /></div>
-        </div>
-      </section>
-      {/* ===== CORE SERVICES (cards) ===== */}
+    {/* duplicated for seamless loop */}
+    <div className="logoBox"><img src={pro1} alt="client" /></div>
+    <div className="logoBox"><img src={pro2} alt="client" /></div>
+    <div className="logoBox"><img src={pro3} alt="client" /></div>
+    <div className="logoBox"><img src={pro4} alt="client" /></div>
+    <div className="logoBox"><img src={pro5} alt="client" /></div>
+  <div className="logoBox"><img src={pro1} alt="client" /></div>
+  </div>
+</section>
+
+{/* ===== CORE SERVICES (cards) ===== */}
    {/* ===== CORE SERVICES ===== */}
 <section className="coreSection section">
   <div className="container">
@@ -98,7 +101,7 @@ export default function Home() {
   </div>
 </section>
 
-      {/* ===== FEATURES (compact) ===== */}
+  {/* ===== FEATURES (compact) ===== */}
   <section className="section alt whySection">
         <div className="container">
           <h2 className="h2 slim">Why teams choose us</h2>
@@ -131,53 +134,44 @@ export default function Home() {
 
           <div className="teamRow">
             {[
-              { name: "Md Ariful Islam", role: "Founder & CEO\nGreen Tech", img: ceo, icons: ["telegram","WhatsApp"] },
+              { name: "Md Ariful Islam", role: "Founder & CEO\nGreen Tech", img: ceo, icons: ["telegram","whatsapp"] },
               { name: "Shahid Azad", role: "Head of Lead Generation & Technical", img: sahid, icons: ["telegram"] },
               { name: "Md Tahsinul Hoque Siddiki", role: "Community & Business Developer", img: wakif, icons: ["telegram"] },
               { name: "Nishat Anjum", role: "Junior Custom Relations Executive", img: female, icons: ["telegram"] },
               { name: "Mahfuz Rahman", role: "Junior Social Media Manager", img: mahafuz, icons: ["telegram"] }
-
             ].map((p, i) => (
-              <article className="person" key={i}>
-                <img className="avatar" src={p.img} alt={p.name} />
-                <div className="name">{p.name}</div>
-                <div className="role">{p.role.split('\n').map((l,ii)=>(<div key={ii}>{l}</div>))}</div>
+              <Reveal className="personReveal" key={i} once={true} rootMargin="0px 0px -10% 0px">
+                <article className="person">
+                  <img className="avatar" src={p.img} alt={p.name} />
+                  <div className="name">{p.name}</div>
+                  <div className="role">{p.role.split('\n').map((l,ii)=>(<div key={ii}>{l}</div>))}</div>
 
-                <div className="contactIcons">
-                  {p.icons.includes("telegram") && (
-                    <a className="iconBtn" href="#" aria-label="Telegram">
-                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.8 3.2c-.2-.2-.5-.3-.8-.3-.3 0-.6.1-.8.3L3.6 14.7c-.3.2-.5.5-.5.9l.6 4c.1.6.7 1 1.3 1 .2 0 .4 0 .6-.1l3.9-1.5c.3-.1.6-.1.9.1.2.1.6.4 1 .6.6.3 1.3.1 1.8-.3L21 9.6c.3-.4.5-.9.4-1.4l-.6-4c0-.3-.1-.6-.9-1.0zM9.8 15.3l-1.5 1.5-1.2-.8 2.7-3.0 9.1-5.6-8.9 7.9z"/></svg>
-                    </a>
-                  )}
-                  {p.icons.includes("whatsapp") && (
-                    <a className="iconBtn" href="#" aria-label="WhatsApp">
-                      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0zM8 8h4.8v2.2h.1c.7-1.2 2.4-2.4 4.9-2.4C22.1 7.8 24 10 24 14.3V24h-5v-8.9c0-2.1-.1-4.8-3-4.8-3 0-3.5 2.2-3.5 4.6V24H8z"/></svg>
-                    </a>
-                  )}
-                </div>
-              </article>
+                  <div className="contactIcons">
+                    {p.icons.includes("telegram") && (
+                      <a className="iconBtn" href="#" aria-label="Telegram">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.8 3.2c-.2-.2-.5-.3-.8-.3-.3 0-.6.1-.8.3L3.6 14.7c-.3.2-.5.5-.5.9l.6 4c.1.6.7 1 1.3 1 .2 0 .4 0 .6-.1l3.9-1.5c.3-.1.6-.1.9.1.2.1.6.4 1 .6.6.3 1.3.1 1.8-.3L21 9.6c.3-.4.5-.9.4-1.4l-.6-4c0-.3-.1-.6-.9-1.0zM9.8 15.3l-1.5 1.5-1.2-.8 2.7-3.0 9.1-5.6-8.9 7.9z"/></svg>
+                      </a>
+                    )}
+                    {p.icons.includes("whatsapp") && (
+                      <a className="iconBtn" href="#" aria-label="WhatsApp">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0zM8 8h4.8v2.2h.1c.7-1.2 2.4-2.4 4.9-2.4C22.1 7.8 24 10 24 14.3V24h-5v-8.9c0-2.1-.1-4.8-3-4.8-3 0-3.5 2.2-3.5 4.6V24H8z"/></svg>
+                      </a>
+                    )}
+                  </div>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ===== TESTIMONIALS ===== */}
-      <section className="reviewSection">
-        <h2 className="sectionTitle">Happy & Satisfied Faces</h2>
-        <p className="sectionSubtitle">Here are a few of our clients (Fiverr review images)</p>
+      
+   
 
-        <div className="reviewGallery">
-          <div className="reviewRow">
-            {[r2, r3, r4, r5, r6, r1].map((img, i) => (
-              <div className="reviewItem" key={i}>
-                <img src={img} alt={`review-${i}`} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+  {/* ===== REVIEWS V2 ===== */}
+  <ReviewsV2 />
 
-      {/* ===== FAQ ===== */}
+  {/* ===== FAQ ===== */}
       <section className="section reveal alt">
         <div className="container">
           <h2 className="h2 slim">FAQ</h2>
@@ -198,15 +192,18 @@ export default function Home() {
       </section>
 
       {/* ===== CTA ===== */}
-      <section className="section reveal">
-        <div className="container">
-          <div className="ctaBubble">
-            <h3 className="h3">Need experienced call center services?</h3>
-            <p className="p tiny">Launch a compliant, conversion-focused campaign.</p>
-            <a className="btn" href="/contact">Talk to us</a>
-          </div>
-        </div>
-      </section>
+     <section className="ctaCenter">
+  <div className="ctaCard">
+    <div className="ctaText">
+      <h3 className="ctaTitle">🚀 Ready to Launch?</h3>
+      <p className="ctaSub">
+        We build compliant, human-first outreach campaigns that convert.
+        Fast ramp, measurable results, and 24/7 support when you need it.
+      </p>
+    </div>
+    <a href="#contact" className="btn ctaBtn">Launch with Us</a>
+  </div>
+</section>
     </>
   );
 }
