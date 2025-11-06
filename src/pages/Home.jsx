@@ -201,7 +201,7 @@ export default function Home() {
         Fast ramp, measurable results, and 24/7 support when you need it.
       </p>
     </div>
-    <a href="#contact" className="btn ctaBtn">Launch with Us</a>
+    <a href="/contact" className="btn ctaBtn">Launch with Us</a>
   </div>
 </section>
     </>
