@@ -215,3 +215,5 @@ export default function Home() {
     </>
   );
 }
+
+// sendEmail utilities moved to ../utils/sendEmail.js
