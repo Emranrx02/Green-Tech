@@ -16,6 +16,10 @@ import sahid from "../assets/sahid.jpg";
 import wakif from "../assets/wakif.jpeg";
 import female from "../assets/female.jpeg";
 import mahafuz from "../assets/mahafuz.jpeg";
+import nurnanbi from "../assets/nurnabi.jpeg";
+import samiul from "../assets/samiul.jpeg";
+import female2 from "../assets/female2.jpeg";
+import miah from "../assets/miah.jpeg";
 
 
 export default function Home() {
@@ -133,13 +137,17 @@ export default function Home() {
           <p className="p tiny teamLead">Our leadership and delivery team working across campaigns and QA.</p>
 
           <div className="teamRow">
-            {[
-              { name: "Md Ariful Islam", role: "Founder & CEO\nGreen Tech", img: ceo, icons: ["telegram","whatsapp"] },
-              { name: "Shahid Azad", role: "Head of Lead Generation & Technical", img: sahid, icons: ["telegram"] },
-              { name: "Md Tahsinul Hoque Siddiki", role: "Community & Business Developer", img: wakif, icons: ["telegram"] },
-              { name: "Nishat Anjum", role: "Junior Custom Relations Executive", img: female, icons: ["telegram"] },
-              { name: "Mahfuz Rahman", role: "Junior Social Media Manager", img: mahafuz, icons: ["telegram"] }
-            ].map((p, i) => (
+{[
+  { name: "Md Ariful Islam", role: "Founder & CEO\nGreen Tech", img: ceo, icons: ["telegram","whatsapp"] },
+  { name: "Shahid Azad", role: "Head of Lead Generation & Technical", img: sahid, icons: ["telegram"] },
+  { name: "Md Tahsinul Hoque Siddiki", role: "Community & Business Developer", img: wakif, icons: ["telegram"] },
+  { name: "Nishat Anjum", role: "Junior Custom Relations Executive", img: female, icons: ["telegram"] },
+  { name: "Mahfuz Rahman", role: "Junior Social Media Manager", img: mahafuz, icons: ["telegram"] },
+  { name: "Md Nurnabi Shohan", role: "Operation Manager", img: nurnanbi, icons: ["telegram"] },
+  { name: "Md.Samiul Alam", role: "Junior custom relations executive\nSenior Marketing Executive", img: samiul, icons: ["telegram"] },
+  { name: "female2", role: "Senior custom relations Executive & trainer", img: female2, icons: ["telegram"] },
+    { name: "Miah Mohammad Tamjid\nWeb Developer", role: "Senior custom relations Executive & trainer", img: miah, icons: ["telegram"] }
+].map((p, i) => (
               <Reveal className="personReveal" key={i} once={true} rootMargin="0px 0px -10% 0px">
                 <article className="person">
                   <img className="avatar" src={p.img} alt={p.name} />
