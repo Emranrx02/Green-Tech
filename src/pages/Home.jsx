@@ -20,6 +20,7 @@ import nurnanbi from "../assets/nurnabi.jpeg";
 import samiul from "../assets/samiul.jpeg";
 import female2 from "../assets/female2.jpeg";
 import miah from "../assets/miah.jpeg";
+import Hasibur from "../assets/Hasibur.jpg";
 
 
 export default function Home() {
@@ -145,8 +146,9 @@ export default function Home() {
   { name: "Mahfuz Rahman", role: "Junior Social Media Manager", img: mahafuz, icons: ["telegram"] },
   { name: "Md Nurnabi Shohan", role: "Operation Manager", img: nurnanbi, icons: ["telegram"] },
   { name: "Md.Samiul Alam", role: "Junior custom relations executive\nSenior Marketing Executive", img: samiul, icons: ["telegram"] },
-  { name: "female2", role: "Senior custom relations Executive & trainer", img: female2, icons: ["telegram"] },
-    { name: "Miah Mohammad Tamjid\nWeb Developer", role: "Senior custom relations Executive & trainer", img: miah, icons: ["telegram"] }
+  { name: "Raisa Riaz", role: "Senior custom relations Executive & trainer", img: female2, icons: ["telegram"] },
+  { name: "Miah Mohammad Tamjid", role: "Web Developer", img: miah, icons: ["telegram"] },
+  { name: "Hasibur Rahman", role: "Senior custom relations Executive & trainer", img: Hasibur, icons: ["telegram"] }
 ].map((p, i) => (
               <Reveal className="personReveal" key={i} once={true} rootMargin="0px 0px -10% 0px">
                 <article className="person">
