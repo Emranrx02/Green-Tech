@@ -14,14 +14,13 @@ import pro5 from "../assets/avatars/pro5.jpeg";
 import ceo from "../assets/CEO.jpg";
 import sahid from "../assets/sahid.jpg";
 import wakif from "../assets/wakif.jpeg";
-import female from "../assets/female.jpeg";
-import mahafuz from "../assets/mahafuz.jpeg";
-import nurnanbi from "../assets/nurnabi.jpeg";
-import samiul from "../assets/samiul.jpeg";
-import female2 from "../assets/female2.jpeg";
-import miah from "../assets/miah.jpeg";
 import Hasibur from "../assets/Hasibur.jpeg";
 import Emran from "../assets/Emran.jpg";
+
+// Replace the placeholder values below with the real CEO LinkedIn URL and WhatsApp wa.me link.
+// Example WhatsApp wa.me link format: "https://wa.me/8801XXXXXXXXX" (country code + number, no plus signs or spaces)
+const CEO_LINKEDIN = "https://www.linkedin.com/in/md-ariful-islam/"; // <-- replace with real profile
+const CEO_WHATSAPP_LINK = "https://wa.me/8801849873128"; // <-- replace with real wa.me link
 
 
 export default function Home() {
@@ -131,7 +130,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== TEAM (tiny) ===== */}
         {/* ===== TEAM ===== */}
       <section className="section reveal teamSection">
         <div className="container">
@@ -140,20 +138,15 @@ export default function Home() {
 
           <div className="teamRow">
 {[
-  { name: "Md Ariful Islam", role: "Founder & CEO\nGreen Tech", img: ceo, icons: ["telegram","whatsapp"] },
-  { name: "Md Nurnabi Shohan", role: "Operation Manager", img: nurnanbi, icons: ["telegram"] },
-  { name: "Shahid Azad", role: "Head of Lead Generation & Technical", img: sahid, icons: ["telegram"] },
-  { name: "Hasibur Rahman", role: "Senior custom relations Executive & trainer", img: Hasibur, icons: ["telegram"] },
-  { name: "Raisa Riaz", role: "Senior custom relations Executive & trainer", img: female2, icons: ["telegram"] },
-  { name: "Miah Mohammad Tamjid", role: "Web Developer", img: miah, icons: ["telegram"] },
-  { name: "Emran Haque", role: "Full Stack Blockchain and Web Developer", img: Emran, icons: ["telegram"] },
-  { name: "Md Tahsinul Hoque Siddiki", role: "Community & Business Developer", img: wakif, icons: ["telegram"] },
-  { name: "Mahfuz Rahman", role: "Junior Social Media Manager", img: mahafuz, icons: ["telegram"] },
-  { name: "Nishat Anjum", role: "Junior Custom Relations Executive", img: female, icons: ["telegram"] },
-  { name: "Md.Samiul Alam", role: "Junior custom relations executive\nSenior Marketing Executive", img: samiul, icons: ["telegram"] },
-  
-  
-  
+  { name: "Md Ariful Islam", role: "Founder & CEO\nGreen Tech", img: ceo, linkedin: CEO_LINKEDIN, whatsapp: CEO_WHATSAPP_LINK },
+  { name: "Shahid Azad", role: "Head of Lead Generation & Technical", img: sahid },
+  { name: "Emran Haque", role: "Chief Marketing Officer", img: Emran },
+  { name: "Md Tahsinul Hoque Siddiki", role: "Community & Business Developer", img: wakif },
+{ name: "Hasibur Rahman", role: "Senior custom relations Executive & trainer", img: Hasibur }
+ 
+
+
+
 ].map((p, i) => (
               <Reveal className="personReveal" key={i} once={true} rootMargin="0px 0px -10% 0px">
                 <article className="person">
@@ -162,13 +155,13 @@ export default function Home() {
                   <div className="role">{p.role.split('\n').map((l,ii)=>(<div key={ii}>{l}</div>))}</div>
 
                   <div className="contactIcons">
-                    {p.icons.includes("telegram") && (
-                      <a className="iconBtn" href="#" aria-label="Telegram">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.8 3.2c-.2-.2-.5-.3-.8-.3-.3 0-.6.1-.8.3L3.6 14.7c-.3.2-.5.5-.5.9l.6 4c.1.6.7 1 1.3 1 .2 0 .4 0 .6-.1l3.9-1.5c.3-.1.6-.1.9.1.2.1.6.4 1 .6.6.3 1.3.1 1.8-.3L21 9.6c.3-.4.5-.9.4-1.4l-.6-4c0-.3-.1-.6-.9-1.0zM9.8 15.3l-1.5 1.5-1.2-.8 2.7-3.0 9.1-5.6-8.9 7.9z"/></svg>
+                    {p.linkedin && (
+                      <a className="iconBtn" href={p.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.268c-.966 0-1.75-.786-1.75-1.752s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.752-1.75 1.752zm13.5 11.268h-3v-5.604c0-1.337-.026-3.064-1.866-3.064-1.867 0-2.154 1.459-2.154 2.97v5.698h-3v-10h2.881v1.367h.041c.401-.761 1.379-1.563 2.838-1.563 3.036 0 3.6 2 3.6 4.592v5.604z"/></svg>
                       </a>
                     )}
-                    {p.icons.includes("whatsapp") && (
-                      <a className="iconBtn" href="#" aria-label="WhatsApp">
+                    {p.whatsapp && (
+                      <a className="iconBtn" href={p.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0zM8 8h4.8v2.2h.1c.7-1.2 2.4-2.4 4.9-2.4C22.1 7.8 24 10 24 14.3V24h-5v-8.9c0-2.1-.1-4.8-3-4.8-3 0-3.5 2.2-3.5 4.6V24H8z"/></svg>
                       </a>
                     )}

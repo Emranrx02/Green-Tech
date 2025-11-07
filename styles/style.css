@@ -184,6 +184,13 @@ button{ font:inherit; cursor:pointer }
   margin:0 0 14px;
 }
 
+/* subtle gradient headline for extra polish */
+.heroTitle{
+  background: linear-gradient(90deg,var(--brand2),var(--brand));
+  -webkit-background-clip: text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent;
+  letter-spacing: -.2px;
+}
+
 .heroLead{
   color:#a9b6d6;
   font-size:1.05rem;
@@ -197,6 +204,15 @@ button{ font:inherit; cursor:pointer }
   gap:12px;
   margin:10px 0 14px;
 }
+
+/* make primary hero CTA pop while keeping ghost subtle */
+.heroButtons .btn.primary{
+  background: linear-gradient(135deg,var(--brand2),var(--brand));
+  color:#001b1a;
+  padding:13px 20px; border-radius:14px; font-weight:900;
+  box-shadow: 0 14px 34px rgba(0,0,0,.36);
+}
+.heroButtons .btn.ghost{ opacity:.95 }
 
 .heroChips{
   display:flex;
@@ -228,6 +244,13 @@ button{ font:inherit; cursor:pointer }
   box-shadow:0 18px 40px rgba(0,0,0,.35);
   overflow:hidden;
   animation:fadeIn .8s ease-out both, floatY 6s ease-in-out infinite;
+}
+
+/* soft vignette overlay for hero image */
+.heroImage::after{
+  content:""; position:absolute; inset:0;
+  background: radial-gradient(60% 60% at 30% 20%, rgba(0,0,0,.06), transparent 40%);
+  pointer-events:none;
 }
 
 .heroImage img{
@@ -340,6 +363,12 @@ button{ font:inherit; cursor:pointer }
   .footerRow{ flex-direction:column; align-items:flex-start; gap:12px; padding:16px 0 }
   .socials{ gap:8px; flex-wrap:wrap }
   .slabel{ display:none }           /* keep it compact on mobile */
+
+@media (max-width:520px){
+  .heroTitle{ font-size:clamp(22px,6vw,32px) }
+  .heroText{ text-align:center; }
+  .heroButtons{ justify-content:center }
+}
   .socials a{ padding:8px }         /* icon-only pills */
 }
 /* small screens: stack footer content */
