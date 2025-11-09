@@ -1199,78 +1199,108 @@ button{ font:inherit; cursor:pointer }
   .footer .container{ flex-direction:column; text-align:center }
 }
 
-/* ===== CORE SERVICES ===== */
-
+/* === Core Services (cute modern look) === */
 .coreSection{
-  position: relative;
-  overflow: hidden;
-  background: radial-gradient(900px 260px at 15% -10%, rgba(98,208,255,.08), transparent 60%),
-              radial-gradient(900px 260px at 85% 110%, rgba(108,243,193,.07), transparent 60%);
+  background: radial-gradient(800px 400px at 20% -10%, rgba(108,243,193,.07),transparent 70%),
+              radial-gradient(800px 400px at 80% 120%, rgba(98,208,255,.07),transparent 70%);
+  padding: 80px 0;
 }
-
-.coreHead{ text-align:center; margin-bottom:24px }
+.coreHead{text-align:center;margin-bottom:40px}
 .coreTitle{
-  margin:0;
-  text-transform: none;
-  letter-spacing:.2px;
-  background: linear-gradient(90deg, #00ffc6, #00b3ff);
-  -webkit-background-clip: text; background-clip:text; -webkit-text-fill-color: transparent; color: transparent;
+  font-size:clamp(26px,3vw,36px);
+  font-weight:900;
+  background:linear-gradient(90deg,#6cf3c1,#62d0ff);
+  -webkit-background-clip:text;
+  color:transparent;
+  letter-spacing:.3px;
 }
-.coreSub{ color:var(--muted); margin:8px 0 0 }
+.coreSub{color:#9fb6d4;font-size:15px;margin-top:6px}
 
 .coreGrid{
   display:grid;
-  grid-template-columns: repeat(4, minmax(0,1fr));
-  gap:18px;
-  margin-top:24px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:28px;
+  justify-content:center;
 }
 
 .cCard{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:20px;
+  padding:28px 24px 30px;
+  box-shadow:0 10px 24px rgba(0,0,0,.25);
+  backdrop-filter:blur(14px);
+  transition:all .3s ease;
   position:relative;
-  border-radius:16px;
-  padding:18px 18px 16px;
-  background: linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
-  border:1px solid var(--line);
-  box-shadow: var(--shadow);
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
   overflow:hidden;
-  isolation:isolate;
-  display:flex;                 /* make card a column so actions can be pinned */
-  flex-direction:column;
-  justify-content:space-between;
 }
-.cCard::after{
+.cCard::before{
   content:"";
-  position:absolute; inset:auto -40% -40% -40%;
-  height:120px;
-  background: radial-gradient(120px 60px at 50% 0, rgba(108,243,193,.18), transparent 70%);
-  filter: blur(24px);
-  opacity:.0; transition: opacity .3s ease;
-  pointer-events:none; z-index:-1;
+  position:absolute;
+  inset:0;
+  border-radius:20px;
+  padding:1px;
+  background:linear-gradient(135deg,rgba(108,243,193,.45),rgba(98,208,255,.45));
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+          mask-composite:exclude;
+  pointer-events:none;
 }
 .cCard:hover{
-  transform: translateY(-6px);
-  border-color: rgba(255,255,255,.18);
-  box-shadow: var(--shadow-lg);
-  background: linear-gradient(160deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 16px 40px rgba(0,0,0,.35);
 }
-.cCard:hover::after{ opacity:1 }
 
 .cIcon{
-  width:52px; height:52px;
-  display:grid; place-items:center;
-  border-radius:14px;
-  font-size:22px;
-  color:#00ffc6;
-  background: radial-gradient(circle at 20% 20%, rgba(0,255,204,.18), rgba(0,150,255,.06));
+  font-size:26px;
+  width:58px;height:58px;
+  display:grid;place-items:center;
+  border-radius:16px;
+  background:radial-gradient(circle at 30% 30%,rgba(98,208,255,.15),rgba(108,243,193,.06));
+  margin-bottom:14px;
+  color:#79ffd5;
   border:1px solid rgba(255,255,255,.12);
-  margin-bottom:10px;
-  transition: transform .25s ease;
+  box-shadow:inset 0 0 12px rgba(108,243,193,.15);
 }
-.cCard:hover .cIcon{ transform: rotate(6deg) scale(1.06) }
+.h3.cTitle{
+  margin:0 0 8px;
+  font-size:19px;
+  font-weight:800;
+  color:#fff;
+}
+.p.cText{color:#a9bbda;margin:0 0 14px;line-height:1.5}
 
-.cTitle{ margin:0 0 6px; font-weight:900 }
-.cText{ color:var(--muted); margin:0 0 10px }
+.cList{
+  color:#cfe8ff;
+  font-size:14px;
+  margin:0 0 18px;
+  padding-left:18px;
+}
+.cList li{margin:6px 0}
+.cList li::marker{content:"✨ "}
+
+.cActions .btn{
+  background:linear-gradient(90deg,#6cf3c1,#62d0ff);
+  color:#001820;
+  border:none;
+  border-radius:12px;
+  padding:10px 16px;
+  font-weight:800;
+  text-transform:uppercase;
+  font-size:13px;
+  letter-spacing:.3px;
+  box-shadow:0 6px 14px rgba(98,208,255,.25);
+  transition:all .25s ease;
+}
+.cActions .btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(98,208,255,.4);
+}
+
+/* responsive tweaks */
+@media (max-width:768px){.coreGrid{gap:22px}.cCard{padding:24px}}
 
 /* Actions container in core cards — push to bottom and keep consistent spacing */
 .cActions{ margin-top:12px }
