@@ -1241,6 +1241,9 @@ button{ font:inherit; cursor:pointer }
   border-radius:20px;
   padding:1px;
   background:linear-gradient(135deg,rgba(108,243,193,.45),rgba(98,208,255,.45));
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
