@@ -9,14 +9,14 @@ import B2BColdCalling from "./pages/B2BColdCalling.jsx";
 import B2BLeadGeneration from "./pages/B2BLeadGeneration.jsx";
 import B2CLeadGeneration from "./pages/B2CLeadGeneration.jsx";
 import B2CColdCalling from "./pages/B2CColdCalling.jsx";  
-import ChatWidget from "./components/ChatWidget.jsx";
+
 
 
 
 export default function App() {
   return (
     <>
-    <ChatWidget />
+  
       <Navbar />
       <main>
         <Routes>
