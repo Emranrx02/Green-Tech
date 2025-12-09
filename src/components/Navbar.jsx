@@ -44,6 +44,7 @@ export default function Navbar() {
 
         <nav className="links hideOnMobile" aria-label="Primary">
           <NavLink to="/about">About</NavLink>
+          <a href="/#packages">Packages</a>
           <NavLink to="/services">Services</NavLink>
           <NavLink to="/contact">Help Center</NavLink>
         </nav>
@@ -83,6 +84,7 @@ export default function Navbar() {
           </button>
 
           <NavLink to="/about">About</NavLink>
+          <a href="/#packages">Packages</a>
           <NavLink to="/services">Services</NavLink>
           <NavLink to="/contact">Help Center</NavLink>
 
