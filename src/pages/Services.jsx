@@ -1,7 +1,6 @@
 // src/pages/Services.jsx
 import { Link } from "react-router-dom";
 import { telemarketingIntro, services } from "../content/services";
-import { servicePages } from "../content/servicePages";
 
 export default function Services() {
   return (
@@ -14,18 +13,7 @@ export default function Services() {
           </h1>
           <p className="p">{telemarketingIntro.tagline}</p>
 
-          <div className="card" style={{ marginTop: 18 }}>
-            <h3 className="h3" style={{ marginBottom: 6 }}>
-              What is Telemarketing?
-            </h3>
-            <p className="p">{telemarketingIntro.whatIs}</p>
-            <ul className="list check">
-              <li>Outbound calls to targeted prospects</li>
-              <li>Inbound calls from ads or promotions</li>
-              <li>Live agents first; automation only where fully compliant</li>
-              <li>Used across B2B and B2C campaigns</li>
-            </ul>
-          </div>
+          {/* Intro card removed per request: 'What is Telemarketing' */}
         </div>
       </section>
 
@@ -47,18 +35,6 @@ export default function Services() {
                 <div className="svcIcon" aria-hidden>{s.icon}</div>
                 <h3 className="h3" style={{ marginBottom: 6 }}>{s.title}</h3>
                 <p className="p">{s.summary}</p>
-
-                {/* show basic packages inline if available */}
-                {servicePages[s.slug] && servicePages[s.slug].packages ? (
-                  <div className="svcPackages">
-                    {servicePages[s.slug].packages.slice(0,3).map((p, i) => (
-                      <div key={i} className="pkgInline">
-                        <div className="pkgName">{p.name}</div>
-                        <div className="pkgPrice">{p.price}</div>
-                      </div>
-                    ))}
-                  </div>
-                ) : null}
 
                 {s.bullets && typeof s.bullets === "object" && Object.keys(s.bullets).length > 0 ? (
                   Object.entries(s.bullets).map(([group, items], idx) => (

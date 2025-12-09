@@ -398,68 +398,6 @@ button{ font:inherit; cursor:pointer }
 
   /* Make hero buttons stack nicely and keep CTA prominent */
   .heroButtons{ flex-direction:row; gap:10px; justify-content:center }
-
-/* ==========================
-   Footer — polished & cute
-   ========================== */
-.footer .container{ display:flex; gap:28px; align-items:flex-start; justify-content:space-between; padding:28px 20px }
-.footerCol{ flex:1; min-width:200px }
-.footerCol h4{ color:var(--text); margin:0 0 8px; font-size:16px }
-.brandRow{ display:flex; align-items:center }
-.brandName{ font-weight:900; font-size:1.05rem; color:var(--text) }
-.tagline{ color:var(--muted); font-size:.92rem; margin-top:3px }
-.about{ color:var(--muted); margin-top:10px; line-height:1.5 }
-
-.socialRow{ display:flex; gap:10px; margin-top:10px; flex-wrap:wrap }
-.social{ display:inline-flex; align-items:center; justify-content:center; padding:8px 12px; border-radius:999px; background:linear-gradient(135deg, rgba(108,243,193,.06), rgba(98,208,255,.06)); border:1px solid rgba(255,255,255,.04); color:var(--text); font-weight:700 }
-.social:hover{ transform:translateY(-4px); box-shadow:0 12px 30px rgba(0,0,0,.35) }
-
-.footerBottom{ padding:14px 0; border-top:1px dashed rgba(255,255,255,.03); margin-top:16px }
-
-/* packages (service page and services listing) */
-.pkgGrid{ display:flex; gap:12px; flex-wrap:wrap; margin-top:12px }
-.pkgCard{ background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); border:1px solid var(--line); border-radius:14px; padding:12px 14px; min-width:120px; text-align:center }
-.pkgCard .pkgName{ font-weight:800; color:var(--text); margin-bottom:6px }
-.pkgCard .pkgQty{ color:var(--muted); font-size:.95rem; margin-bottom:8px }
-.pkgCard .pkgPrice{ font-weight:900; color:var(--brand2); font-size:1.1rem }
-
-.svcPackages{ display:flex; gap:8px; margin-top:10px; flex-wrap:wrap }
-.pkgInline{ background:rgba(255,255,255,.03); padding:6px 8px; border-radius:10px; display:flex; gap:8px; align-items:center; border:1px solid rgba(255,255,255,.03) }
-.pkgInline .pkgName{ font-weight:800; font-size:.9rem }
-.pkgInline .pkgPrice{ color:var(--brand2); font-weight:900 }
-
-/* responsive footer and packages */
-@media (max-width:900px){
-  .footer .container{ flex-direction:column; align-items:center; text-align:center }
-  .footerCol{ width:100%; }
-  .socialRow{ justify-content:center }
-  .pkgGrid{ justify-content:center }
-}
-
-@media (max-width:480px){
-  .brandRow img{ width:40px; height:40px }
-  .pkgCard{ min-width:110px; padding:10px }
-  .social{ padding:8px }
-}
-
-/* ==========================
-   AI Section styles
-   ========================== */
-.aiSection{ background: linear-gradient(180deg, rgba(108,243,193,0.02), rgba(98,208,255,0.02)); border-top:1px solid rgba(255,255,255,0.02); padding:56px 0 }
-.aiGrid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:18px; margin-top:18px }
-.aiCard{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid var(--line); padding:18px; border-radius:14px; text-align:left; box-shadow: var(--shadow) }
-.aiCard .aiIcon{ font-size:28px; width:56px; height:56px; display:flex; align-items:center; justify-content:center; border-radius:12px; background:linear-gradient(135deg, rgba(108,243,193,0.12), rgba(98,208,255,0.12)); margin-bottom:10px }
-.aiCard h3{ margin:0 0 6px }
-.aiCard .small{ color:var(--muted); margin:0 }
-
-@media (max-width:1000px){
-  .aiGrid{ grid-template-columns: repeat(2, 1fr) }
-}
-@media (max-width:560px){
-  .aiGrid{ grid-template-columns: 1fr }
-  .aiCard{ text-align:center }
-  .aiCard .aiIcon{ margin:0 auto 10px }
-}
   .heroButtons .btn{ padding:10px 14px; border-radius:10px }
 
   /* Center and style the chips/pills beneath the buttons; keep DNC and Call Center text visible */

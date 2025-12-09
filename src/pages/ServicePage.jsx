@@ -42,24 +42,6 @@ export default function ServicePage() {
         </div>
       </section>
 
-      {/* Pricing / Packages */}
-      {data.packages && data.packages.length > 0 ? (
-        <section className="section">
-          <div className="container">
-            <h3 className="h3" style={{ marginBottom: 12 }}>Packages</h3>
-            <div className="pkgGrid">
-              {data.packages.map((p, i) => (
-                <div key={i} className="card pkgCard">
-                  <div className="pkgName">{p.name}</div>
-                  <div className="pkgQty">{p.qty}</div>
-                  <div className="pkgPrice">{p.price}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      ) : null}
-
       {/* Compliance */}
       <section className="section">
         <div className="container">

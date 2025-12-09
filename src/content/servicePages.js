@@ -22,12 +22,6 @@ export const servicePages = {
       "Brand-safe scripting and monitoring"
     ],
     cta: { label: "Book a discovery call", to: "/contact" }
-    ,
-    packages: [
-      { name: "Basic", qty: "100 calls", price: "$20" },
-      { name: "Medium", qty: "250 calls", price: "$40" },
-      { name: "Premium", qty: "500 calls", price: "$80" }
-    ]
   },
 
   "b2c-cold-calling": {
@@ -52,12 +46,6 @@ export const servicePages = {
       "Transparent disposition codes"
     ],
     cta: { label: "Start B2C campaign", to: "/contact" }
-    ,
-    packages: [
-      { name: "Basic", qty: "100 calls", price: "$20" },
-      { name: "Medium", qty: "250 calls", price: "$40" },
-      { name: "Premium", qty: "500 calls", price: "$80" }
-    ]
   },
 
   "b2b-lead-generation": {
@@ -82,12 +70,6 @@ export const servicePages = {
       "Strict brand guidelines"
     ],
     cta: { label: "Generate B2B leads", to: "/contact" }
-    ,
-    packages: [
-      { name: "Basic", qty: "100 leads", price: "$20" },
-      { name: "Medium", qty: "250 leads", price: "$40" },
-      { name: "Premium", qty: "500 leads", price: "$80" }
-    ]
   },
 
   "b2c-lead-generation": {
@@ -112,11 +94,5 @@ export const servicePages = {
       "Sensitive category guidelines"
     ],
     cta: { label: "Scale B2C growth", to: "/contact" }
-    ,
-    packages: [
-      { name: "Basic", qty: "100 leads", price: "$20" },
-      { name: "Medium", qty: "250 leads", price: "$40" },
-      { name: "Premium", qty: "500 leads", price: "$80" }
-    ]
   }
 };

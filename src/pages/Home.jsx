@@ -45,7 +45,7 @@ export default function Home() {
               Human-first calls, compliant scripts, clear reporting.
             </p>
             <div className="heroButtons">
-              <a href="/contact" className="btn">Discover GT — Book a meeting</a>
+              <a href="/contact" className="btn">Get Started</a>
               <a href="/services" className="btn ghost">View Services</a>
             </div>
             <ul className="heroChips">
@@ -208,37 +208,6 @@ export default function Home() {
                 </article>
               </Reveal>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ===== AI FEATURES ===== */}
-      <section className="section aiSection">
-        <div className="container">
-          <div className="sectionHeading center">
-            <div className="lead">
-              <h2 className="h2">AI-powered Assistants</h2>
-              <p className="p">Smarter outreach: faster qualification, cleaner handoffs, and actionable insights powered by lightweight ML and human oversight.</p>
-            </div>
-          </div>
-
-          <div className="aiGrid">
-            {[
-              { t: "Smart Routing", d: "Automatically route leads to the right agent based on intent and past outcomes.", i: "🤖" },
-              { t: "Call Summaries", d: "Short, accurate summaries and suggested next steps attached to each call log.", i: "📝" },
-              { t: "Sentiment", d: "Detect positive, neutral, and negative sentiment to prioritize follow-ups and coaching.", i: "💬" },
-              { t: "Lead Scoring", d: "Predictive scoring to focus your team on the highest-probability opportunities.", i: "📈" }
-            ].map((f, i) => (
-              <article key={i} className="aiCard">
-                <div className="aiIcon" aria-hidden>{f.i}</div>
-                <h3 className="h3">{f.t}</h3>
-                <p className="p small">{f.d}</p>
-              </article>
-            ))}
-          </div>
-
-          <div style={{ textAlign: 'center', marginTop: 18 }}>
-            <a className="btn" href="/contact">Ask about AI-enabled pilots</a>
           </div>
         </div>
       </section>
