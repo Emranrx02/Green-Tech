@@ -45,7 +45,7 @@ export default function Home() {
               Human-first calls, compliant scripts, clear reporting.
             </p>
             <div className="heroButtons">
-              <a href="/contact" className="btn">Get Started</a>
+              <a href="/contact" className="btn">Discover GT — Book a meeting</a>
               <a href="/services" className="btn ghost">View Services</a>
             </div>
             <ul className="heroChips">
