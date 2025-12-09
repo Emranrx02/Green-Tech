@@ -2,6 +2,7 @@ import callImg from "../assets/call.jpg";
 import Reveal from "../components/Reveal";
 import { services } from "../content/services";
 import ReviewsV2 from "../components/ReviewsV2";
+import PackagesSection from "../components/PackagesSection";
 
 // Import assets so Vite bundles them for production (avoid absolute /src/... paths)
 import pro1 from "../assets/avatars/pro1.jpeg";
@@ -162,6 +163,9 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+  {/* ===== PACKAGES ===== */}
+  <PackagesSection />
 
       {/* ===== TEAM ===== */}
       <section className="section reveal teamSection">
