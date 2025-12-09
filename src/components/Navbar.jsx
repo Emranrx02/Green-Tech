@@ -49,7 +49,7 @@ export default function Navbar() {
         </nav>
 
         <Link className="btn sm hideOnMobile" to="/contact">
-          Discover GT
+          Book a meeting
         </Link>
 
         <button
@@ -87,7 +87,7 @@ export default function Navbar() {
           <NavLink to="/contact">Help Center</NavLink>
 
           <Link className="btn primary" to="/contact">
-            Discover GT
+            Book a meeting
           </Link>
         </div>
       </div>
