@@ -5,17 +5,7 @@ import { services } from "../content/services";
 export default function Services() {
   return (
     <main>
-      {/* Intro */}
-      <section className="section">
-        <div className="container">
-          <h1 className="h1" style={{ marginBottom: 10 }}>
-            Service That We Provide
-          </h1>
-          <p className="p">Outcome-focused calling &amp; lead gen with compliance, QA, and clear reporting.</p>
-
-          {/* Intro card removed per request: 'What is Telemarketing' */}
-        </div>
-      </section>
+      {/* Intro removed per request - services listing starts below */}
 
       {/* Service Cards */}
       <section className="section alt" id="services">
