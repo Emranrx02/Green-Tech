@@ -1,32 +1,49 @@
 import React from "react";
-import { FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
+import logo from "../assets/logo.jpg";
+import { FaMapMarkerAlt, FaEnvelope, FaPhone } from "react-icons/fa";
 
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="container">
-        <div className="footerCol" style={{ textAlign: 'left' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <FaMapMarkerAlt style={{ color: 'var(--brand2)', minWidth: 20 }} />
+      <div className="container footerGrid">
+        <div className="footerCol footerLeft">
+          <div className="locRow">
+            <FaMapMarkerAlt className="locIcon" />
             <div>
-              <div style={{ fontWeight: 800, color: 'var(--text)' }}>Location</div>
-              <div style={{ color: 'var(--muted)' }}>Azampur, Uttara</div>
+              <div className="locTitle">Location</div>
+              <div className="locText">Azampur, Uttara</div>
             </div>
           </div>
         </div>
 
-        <div className="footerCol" style={{ textAlign: 'right' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 12 }}>
-            <div style={{ textAlign: 'right' }}>
-              <div style={{ fontWeight: 800, color: 'var(--text)' }}>Mail</div>
-              <a href="mailto:info@grentechit.com" style={{ color: 'var(--brand2)', fontWeight: 700 }}>info@grentechit.com</a>
+        <div className="footerCol footerCenter">
+          <div className="linksCol">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><a href="/">Home</a></li>
+              <li><a href="/services">Services</a></li>
+              <li><a href="/contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div className="contactCol">
+            <div className="contactItem"><FaEnvelope className="contactIcon" /><a href="mailto:info@grentechit.com">info@grentechit.com</a></div>
+            <div className="contactItem"><FaPhone className="contactIcon" /><a href="tel:+8801619012356">01619012356</a></div>
+          </div>
+        </div>
+
+        <div className="footerCol footerRight">
+          <div className="brandRow">
+            {logo ? <img src={logo} alt="Green Tech" width={56} height={56} style={{ borderRadius: 10, objectFit: 'cover' }} /> : null}
+            <div style={{ marginLeft: 12 }}>
+              <div className="brandName">Green Tech</div>
+              <div className="brandTag">A platform to prove your skill</div>
             </div>
-            <FaEnvelope style={{ color: 'var(--brand2)', minWidth: 20 }} />
           </div>
         </div>
       </div>
 
-      <div className="container footerBottom footerCenter" style={{ paddingTop: 14 }}>
+      <div className="container footerBottom footerCenter">
         <span className="copyright">© {new Date().getFullYear()} Green Tech • Developed by <a href="https://emranhaque.com" target="_blank" rel="noopener noreferrer">Emran Haque</a>.</span>
       </div>
     </footer>

@@ -1199,6 +1199,37 @@ button{ font:inherit; cursor:pointer }
   .footer .container{ flex-direction:column; text-align:center }
 }
 
+/* Footer grid columns */
+.footerGrid{ display:flex; gap:20px; align-items:flex-start; justify-content:space-between }
+.footerCol{ flex:1; min-width:180px }
+.footerLeft .locRow{ display:flex; gap:12px; align-items:center }
+.locIcon{ color:var(--brand2); font-size:20px }
+.locTitle{ font-weight:800; color:var(--text); margin-bottom:6px }
+.locText{ color:var(--muted) }
+
+.footerCenter{ display:flex; gap:28px; align-items:flex-start; justify-content:center }
+.linksCol h4{ margin:0 0 8px; color:var(--text) }
+.linksCol ul{ list-style:none; margin:0; padding:0 }
+.linksCol li{ margin:6px 0 }
+.linksCol a{ color:var(--muted) }
+.linksCol a:hover{ color:var(--brand2) }
+
+.contactCol{ margin-top:10px }
+.contactItem{ display:flex; gap:8px; align-items:center; margin:6px 0 }
+.contactIcon{ color:var(--brand2) }
+.contactItem a{ color:var(--brand2); font-weight:700 }
+
+.footerRight .brandRow{ display:flex; align-items:center; gap:12px }
+.brandName{ font-weight:900; color:var(--text) }
+.brandTag{ color:var(--muted); font-size:.95rem }
+
+@media (max-width:700px){
+  .footerGrid{ flex-direction:column; align-items:center; text-align:center }
+  .footerCol{ width:100% }
+  .footerCenter{ flex-direction:column }
+  .footerRight .brandRow{ justify-content:center }
+}
+
 /* === Core Services (cute modern look) === */
 .coreSection{
   background: radial-gradient(800px 400px at 20% -10%, rgba(108,243,193,.07),transparent 70%),
