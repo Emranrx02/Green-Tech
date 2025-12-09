@@ -33,9 +33,9 @@ export default function Footer() {
         </div>
 
         <div className="footerCol footerRight">
-          <div className="brandRow">
-            {logo ? <img src={logo} alt="Green Tech" width={56} height={56} style={{ borderRadius: 10, objectFit: 'cover' }} /> : null}
-            <div style={{ marginLeft: 12 }}>
+          <div className="brandRow brandBox">
+            {logo ? <img src={logo} alt="Green Tech" className="brandLogo" /> : null}
+            <div className="brandInfo">
               <div className="brandName">Green Tech</div>
               <div className="brandTag">A platform to prove your skill</div>
             </div>
