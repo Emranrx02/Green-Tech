@@ -1199,58 +1199,129 @@ button{ font:inherit; cursor:pointer }
   .footer .container{ flex-direction:column; text-align:center }
 }
 
-/* Footer grid columns */
-.footerGrid{ display:flex; gap:20px; align-items:flex-start; justify-content:space-between }
-.footerCol{ flex:1; min-width:180px }
-.footerLeft .locRow{ display:flex; gap:12px; align-items:center }
-.locIcon{ color:var(--brand2); font-size:20px }
-.locTitle{ font-weight:800; color:var(--text); margin-bottom:6px }
-.locText{ color:var(--muted) }
+/* ====== FOOTER LAYOUT (DESKTOP) ====== */
 
-.footerCenter{ display:flex; gap:28px; align-items:flex-start; justify-content:center }
-.linksCol h4{ margin:0 0 8px; color:var(--text) }
-.linksCol ul{ list-style:none; margin:0; padding:0 }
-.linksCol li{ margin:6px 0 }
-.linksCol a{ color:var(--muted) }
-.linksCol a:hover{ color:var(--brand2) }
-
-.contactCol{ margin-top:10px }
-.contactItem{ display:flex; gap:8px; align-items:center; margin:6px 0 }
-.contactIcon{ color:var(--brand2) }
-.contactItem a{ color:var(--brand2); font-weight:700 }
-
-.footerRight .brandRow{ display:flex; align-items:center; gap:12px }
-.brandName{ font-weight:900; color:var(--text) }
-.brandTag{ color:var(--muted); font-size:.95rem }
-
-/* Brand box: makes logo+name stand out and adapts when stacked on mobile */
-.brandBox{ display:flex; align-items:center; gap:12px; padding:12px 16px; border-radius:12px; background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.03); }
-.brandLogo{ width:64px; height:64px; border-radius:12px; object-fit:cover; display:block }
-.brandInfo{ display:flex; flex-direction:column; justify-content:center }
-.brandName{ font-size:1.05rem }
-.brandTag{ font-size:.95rem; color:var(--muted) }
-
-/* Contact visuals */
-.contactCol .contactItem{ display:flex; align-items:center; gap:10px; margin-top:6px }
-.contactCol .contactIcon{ color:var(--brand2); font-size:18px }
-.contactCol a{ color:var(--brand2); font-weight:800 }
-
-@media (max-width:700px){
-  .footerGrid{ flex-direction:column; align-items:center; text-align:center }
-  .footerCol{ width:100% }
-  /* On small screens: show brand first, then location, then links, then contact */
-  .footerRight{ order:1 }
-  .footerLeft{ order:2 }
-  .footerCenter{ order:3; flex-direction:column }
-  .footerCenter .linksCol{ order:1 }
-  .footerCenter .contactCol{ order:2; margin-top:12px }
-  .footerRight .brandRow{ justify-content:center }
-  .brandBox{ justify-content:center; width:100% }
+.footerGrid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 40px 0;
 }
 
-/* Footer bottom: center and italic copyright */
-.footerBottom{ text-align:center; padding:14px 0 }
-.footerBottom .copyright{ font-style:italic; color:var(--muted); }
+.footerCol {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footerTitle {
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+/* Location */
+.locRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.locIcon {
+  color: var(--brand2);
+}
+
+.locText {
+  color: var(--muted);
+}
+
+/* Links */
+.linksList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.linksList li {
+  margin: 6px 0;
+}
+
+.linksList a {
+  color: var(--muted);
+  transition: 0.2s;
+}
+
+.linksList a:hover {
+  color: var(--brand2);
+}
+
+/* Contact */
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+.contactIcon {
+  color: var(--brand2);
+}
+
+.contactItem a {
+  color: var(--brand2);
+  font-weight: 700;
+}
+
+/* Bottom */
+.footerBottom {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 0 22px;
+}
+
+.footerBottomLeft{ display:flex; align-items:center }
+.footerBottomLeft .copyright{ color:var(--muted); font-style:italic; }
+
+.footerBottomRight{ display:flex; align-items:center; gap:12px }
+.aiBadge{
+  background: linear-gradient(135deg,var(--brand2),var(--brand));
+  color:#001b1a; font-weight:900; padding:8px 12px; border-radius:999px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.28);
+  font-size:0.95rem;
+}
+
+/* ====== MOBILE / TABLET RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .footerGrid {
+    flex-direction: column;      /* 3 ta column niche niche */
+    align-items: center;         /* center e niye asbe */
+    text-align: center;
+    gap: 20px;
+    padding: 28px 0 18px;
+  }
+
+  .footerBottom{ flex-direction:column; gap:8px }
+  .footerBottomLeft, .footerBottomRight{ justify-content:center }
+
+  .footerCol {
+    width: 100%;
+    max-width: 340px;           /* ekta card-width moto */
+    min-width: 0;
+  }
+
+  .locRow {
+    justify-content: center;
+  }
+
+  .contactItem {
+    justify-content: center;
+  }
+
+  .footerTitle {
+    margin-bottom: 6px;
+  }
+}
 
 /* === Core Services (cute modern look) === */
 .coreSection{
