@@ -1398,6 +1398,175 @@ button{ font:inherit; cursor:pointer }
   justify-content:center;
 }
 
+/* ==========================
+   PACKAGES SECTION (tiered pricing)
+========================== */
+
+.packagesSection {
+  padding: 80px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Big centered Packages heading */
+.packagesTitle{
+  font-size:2.1rem;
+  font-weight:900;
+  color:var(--text);
+  text-align:center;
+  margin-bottom:6px;
+}
+
+.sectionKicker {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--brand2);
+  margin-bottom: 8px;
+}
+
+.sectionTitle {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.sectionSubtitle {
+  color: var(--muted);
+  max-width: 620px;
+  margin-bottom: 32px;
+}
+
+/* ==== Category (B2B Lead Gen, etc.) ==== */
+
+.categoryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px 28px;
+}
+
+.categoryBlock {
+  background: rgba(255, 255, 255, 0.015);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 20px 22px 22px;
+}
+
+.categoryTitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.categorySubtitle {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+/* ==== Tier cards (Basic/Medium/Premium) ==== */
+
+.tierGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tierCard {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 14px 12px 16px;
+  text-align: center;
+  transition: transform 0.18s ease-out,
+              box-shadow 0.18s ease-out,
+              border-color 0.18s ease-out,
+              background 0.18s ease-out;
+}
+
+.tierCard:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+  border-color: var(--brand2);
+  background: rgba(11, 217, 132, 0.08);
+}
+
+.tierLabel {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+/* Make the middle tier label slightly stronger across each category */
+.categoryBlock .tierGrid .tierCard:nth-child(2) .tierLabel{
+  font-weight:900;
+}
+
+.tierPrice {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.tierMeta {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.tierDetail {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* Highlight Medium as "most popular" */
+
+/* removed .tierPopular and .tierBadge per updated design (no most-popular marker) */
+
+/* Note at bottom */
+
+.packageNote {
+  margin-top: 24px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.packageNote span {
+  color: var(--brand2);
+  font-weight: 600;
+}
+
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 1024px) {
+  .categoryGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .tierGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .packagesSection .sectionTitle,
+  .packagesSection .sectionSubtitle {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .packageNote {
+    text-align: center;
+  }
+}
+
 .cCard{
   background:rgba(255,255,255,.03);
   border:1px solid rgba(255,255,255,.08);
