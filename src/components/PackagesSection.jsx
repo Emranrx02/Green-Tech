@@ -141,7 +141,7 @@ export default function PackagesSection() {
 
         <p className="packageNote">
           Need a custom volume or a mix of services? {" "}
-          <a className="contactMail" href="mailto:info@grentechit.com">Contact us</a> for a tailored quote.
+          <a className="contactMail" href="/contact">Contact us</a> for a tailored quote.
         </p>
       </div>
     </section>
