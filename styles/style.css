@@ -1230,6 +1230,10 @@ button{ font:inherit; cursor:pointer }
   .footerRight .brandRow{ justify-content:center }
 }
 
+/* Footer bottom: center and italic copyright */
+.footerBottom{ text-align:center; padding:14px 0 }
+.footerBottom .copyright{ font-style:italic; color:var(--muted); }
+
 /* === Core Services (cute modern look) === */
 .coreSection{
   background: radial-gradient(800px 400px at 20% -10%, rgba(108,243,193,.07),transparent 70%),
