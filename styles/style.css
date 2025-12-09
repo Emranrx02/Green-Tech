@@ -1199,19 +1199,21 @@ button{ font:inherit; cursor:pointer }
   .footer .container{ flex-direction:column; text-align:center }
 }
 
-/* ====== FOOTER LAYOUT (DESKTOP) ====== */
+/* ================================================
+   FOOTER GRID LAYOUT (DESKTOP)
+================================================= */
 
 .footerGrid {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* 3 equal columns */
   gap: 40px;
   padding: 40px 0;
+  max-width: 1100px;
+  margin: 0 auto; /* center whole block */
 }
 
 .footerCol {
-  flex: 1;
-  min-width: 220px;
+  min-width: 0;
 }
 
 .footerTitle {
@@ -1220,22 +1222,40 @@ button{ font:inherit; cursor:pointer }
   color: var(--text);
 }
 
-/* Location */
-.locRow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+
+/* ================================================
+   LEFT – BRAND
+================================================= */
+
+.brandTitle {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--text);
+  margin-bottom: 4px;
 }
 
-.locIcon {
-  color: var(--brand2);
-}
-
-.locText {
+.brandSub {
+  font-size: 0.95rem;
   color: var(--muted);
+  margin-bottom: 8px;
 }
 
-/* Links */
+.brandDesc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.5;
+  max-width: 360px;
+}
+
+
+/* ================================================
+   MIDDLE – USEFUL LINKS (CENTERED)
+================================================= */
+
+.footerCenter {
+  text-align: center;                /* CENTER whole column */
+}
+
 .linksList {
   list-style: none;
   padding: 0;
@@ -1255,7 +1275,26 @@ button{ font:inherit; cursor:pointer }
   color: var(--brand2);
 }
 
-/* Contact */
+
+/* ================================================
+   RIGHT – LOCATION + CONTACT
+================================================= */
+
+.locRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.locIcon {
+  color: var(--brand2);
+}
+
+.locText {
+  color: var(--muted);
+}
+
 .contactItem {
   display: flex;
   align-items: center;
@@ -1267,13 +1306,23 @@ button{ font:inherit; cursor:pointer }
   color: var(--brand2);
 }
 
-.contactItem a {
-  color: var(--brand2);
-  font-weight: 700;
+/* Email & phone text */
+.contactLink {
+  color: var(--text);
+  font-weight: 500;
+  text-decoration: none;
 }
 
-/* Bottom */
-.footerBottom {
+.contactLink:hover {
+  text-decoration: underline;
+}
+
+
+/* ================================================
+   BOTTOM COPYRIGHT
+================================================= */
+
+.footerBottom{
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -1281,46 +1330,48 @@ button{ font:inherit; cursor:pointer }
 }
 
 .footerBottomLeft{ display:flex; align-items:center }
-.footerBottomLeft .copyright{ color:var(--muted); font-style:italic; }
+.footerBottomLeft .copyright{ color:var(--muted); font-style:italic }
 
 .footerBottomRight{ display:flex; align-items:center; gap:12px }
-.aiBadge{
-  background: linear-gradient(135deg,var(--brand2),var(--brand));
-  color:#001b1a; font-weight:900; padding:8px 12px; border-radius:999px;
-  box-shadow: 0 8px 22px rgba(0,0,0,.28);
-  font-size:0.95rem;
-}
+.footerBottomRight .socials{ display:flex; gap:10px; align-items:center }
+.footerBottomRight .socials a{ display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px; border-radius:10px; color:var(--text); background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.04); transition:transform .15s, box-shadow .15s }
+.footerBottomRight .socials a:hover{ transform:translateY(-3px); box-shadow:0 10px 24px rgba(0,0,0,.24); border-color:rgba(255,255,255,.08); }
+.footerBottomRight .socials svg{ width:18px; height:18px; color:var(--brand2) }
 
-/* ====== MOBILE / TABLET RESPONSIVE ====== */
+
+/* ================================================
+   MOBILE RESPONSIVE
+================================================= */
+
 @media (max-width: 768px) {
   .footerGrid {
-    flex-direction: column;      /* 3 ta column niche niche */
-    align-items: center;         /* center e niye asbe */
+    grid-template-columns: 1fr;      /* 1 column stack */
     text-align: center;
-    gap: 20px;
+    gap: 24px;
     padding: 28px 0 18px;
   }
 
-  .footerBottom{ flex-direction:column; gap:8px }
-  .footerBottomLeft, .footerBottomRight{ justify-content:center }
-
   .footerCol {
-    width: 100%;
-    max-width: 340px;           /* ekta card-width moto */
-    min-width: 0;
+    max-width: 360px;
+    margin: 0 auto;
   }
 
-  .locRow {
-    justify-content: center;
-  }
-
+  .locRow,
   .contactItem {
     justify-content: center;
   }
 
-  .footerTitle {
-    margin-bottom: 6px;
+  .brandDesc {
+    max-width: 360px;
+    margin: 0 auto;
   }
+
+  .footerCenter {
+    text-align: center;
+  }
+  /* Stack footer bottom on small screens */
+  .footerBottom{ flex-direction:column; gap:8px; text-align:center }
+  .footerBottomLeft, .footerBottomRight{ justify-content:center }
 }
 
 /* === Core Services (cute modern look) === */
