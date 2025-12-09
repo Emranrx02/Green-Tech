@@ -1,14 +1,5 @@
 // src/content/services.js
 
-// Used by /services page intro
-export const telemarketingIntro = {
-  title: "Service That We Provide",
-  tagline:
-    "Outcome-focused calling & lead gen with compliance, QA, and clear reporting.",
-  whatIs:
-    "Telemarketing is human-first outreach via phone to start conversations, qualify needs, and book next steps. We prioritize compliant scripts, respectful tone, and clear notes so sales can follow up with context."
-};
-
 // Used by Home.jsx core cards AND the individual service pages (/slug)
 export const services = [
   {

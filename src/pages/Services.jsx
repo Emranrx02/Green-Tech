@@ -1,6 +1,6 @@
 // src/pages/Services.jsx
 import { Link } from "react-router-dom";
-import { telemarketingIntro, services } from "../content/services";
+import { services } from "../content/services";
 
 export default function Services() {
   return (
@@ -9,9 +9,9 @@ export default function Services() {
       <section className="section">
         <div className="container">
           <h1 className="h1" style={{ marginBottom: 10 }}>
-            {telemarketingIntro.title}
+            Service That We Provide
           </h1>
-          <p className="p">{telemarketingIntro.tagline}</p>
+          <p className="p">Outcome-focused calling &amp; lead gen with compliance, QA, and clear reporting.</p>
 
           {/* Intro card removed per request: 'What is Telemarketing' */}
         </div>
