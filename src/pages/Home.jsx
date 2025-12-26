@@ -3,14 +3,12 @@ import Reveal from "../components/Reveal";
 import { services } from "../content/services";
 import ReviewsV2 from "../components/ReviewsV2";
 
-// Import assets so Vite bundles them for production (avoid absolute /src/... paths)
 import pro1 from "../assets/avatars/pro1.jpeg";
 import pro2 from "../assets/avatars/pro2.jpeg";
-
 import pro3 from "../assets/avatars/pro3.jpeg";
 import pro4 from "../assets/avatars/pro4.jpeg";
 import pro5 from "../assets/avatars/pro5.jpeg";
-// pro6 was removed from assets; do not import
+
 import ceo from "../assets/CEO.jpg";
 import sahid from "../assets/sahid.jpg";
 import wakif from "../assets/wakif.jpeg";
@@ -20,17 +18,46 @@ import { FaPhoneAlt, FaUsers, FaBullseye, FaRegChartBar } from "react-icons/fa";
 
 const CEO_LINKEDIN = "https://www.linkedin.com/in/md-ariful-islam/";
 const CEO_WHATSAPP_LINK = "https://wa.me/8801849873128";
-const waLink = (n) => `https://wa.me/${String(n).replace(/\D/g, "")}`; // digits only
-
+const waLink = (n) => `https://wa.me/${String(n).replace(/\D/g, "")}`;
 
 export default function Home() {
-  // debug: show what was actually imported
   console.log("services:", services);
 
+  const packages = [
+    {
+      title: "B2B Lead Generation",
+      plans: [
+        { name: "Basic", qty: "100 leads", price: "$20" },
+        { name: "Medium", qty: "250 leads", price: "$40" },
+        { name: "Premium", qty: "500 leads", price: "$80" },
+      ],
+    },
+    {
+      title: "B2C Lead Generation",
+      plans: [
+        { name: "Basic", qty: "100 leads", price: "$20" },
+        { name: "Medium", qty: "250 leads", price: "$40" },
+        { name: "Premium", qty: "500 leads", price: "$80" },
+      ],
+    },
+    {
+      title: "B2B Cold Calling",
+      plans: [
+        { name: "Basic", qty: "100 cold calls", price: "$20" },
+        { name: "Medium", qty: "250 cold calls", price: "$40" },
+        { name: "Premium", qty: "500 cold calls", price: "$80" },
+      ],
+    },
+    {
+      title: "B2C Cold Calling",
+      plans: [
+        { name: "Basic", qty: "100 cold calls", price: "$20" },
+        { name: "Medium", qty: "250 cold calls", price: "$40" },
+        { name: "Premium", qty: "500 cold calls", price: "$80" },
+      ],
+    },
+  ];
 
-  // Create a rotated version of the sequence for the cloned track so
-  // identical logos don't appear side-by-side when one track meets the other.
-  // Shift by at least 1; using half the unique logos gives a good visual offset.
   return (
     <>
       {/* ===== HERO ===== */}
@@ -38,12 +65,8 @@ export default function Home() {
         <div className="container heroContainer">
           <Reveal className="heroText">
             <span className="heroBadge">B2B & B2C Outreach</span>
-            <h1 className="heroTitle">
-              Helping businesses grow with expert telemarketing
-            </h1>
-            <p className="heroLead">
-              Human-first calls, compliant scripts, clear reporting.
-            </p>
+            <h1 className="heroTitle">Helping businesses grow with expert telemarketing</h1>
+            <p className="heroLead">Human-first calls, compliant scripts, clear reporting.</p>
             <div className="heroButtons">
               <a href="/contact" className="btn">Discover GT — Book a meeting</a>
               <a href="/services" className="btn ghost">View Services</a>
@@ -74,66 +97,66 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 🌿 CORE SERVICES — fresh, visible */}
-<section className="section coreSection" id="core-services">
-  <div className="container">
-    <div className="coreHead">
-      <h2 className="h2 coreTitle">Core Services</h2>
-      <p className="p coreSub">Focused calling &amp; lead gen with QA and compliance.</p>
-    </div>
+      {/* ===== CORE SERVICES ===== */}
+      <section className="section coreSection" id="core-services">
+        <div className="container">
+          <div className="coreHead">
+            <h2 className="h2 coreTitle">Core Services</h2>
+            <p className="p coreSub">Focused calling &amp; lead gen with QA and compliance.</p>
+          </div>
 
-    <div className="coreGrid">
-      <div className="cCard">
-        <div className="cIcon"><FaPhoneAlt /></div>
-        <h3 className="cTitle">B2B Cold Calling</h3>
-        <p className="cText">Professional outreach to decision-makers with compliant scripts and clear dispositions.</p>
-        <ul className="cList">
-          <li>ICP-aligned scripts & rebuttals</li>
-          <li>Daily call notes & QA snapshots</li>
-          <li>Lead qualification + meeting handoff</li>
-          <li>DNC • GDPR • TCPA compliant</li>
-        </ul>
-        <div className="cActions"><a className="btn sm" href="/b2b-cold-calling">Learn more</a></div>
-      </div>
+          <div className="coreGrid">
+            <div className="cCard">
+              <div className="cIcon"><FaPhoneAlt /></div>
+              <h3 className="cTitle">B2B Cold Calling</h3>
+              <p className="cText">Professional outreach to decision-makers with compliant scripts and clear dispositions.</p>
+              <ul className="cList">
+                <li>ICP-aligned scripts & rebuttals</li>
+                <li>Daily call notes & QA snapshots</li>
+                <li>Lead qualification + meeting handoff</li>
+                <li>DNC • GDPR • TCPA compliant</li>
+              </ul>
+              <div className="cActions"><a className="btn sm" href="/b2b-cold-calling">Learn more</a></div>
+            </div>
 
-      <div className="cCard">
-        <div className="cIcon"><FaUsers /></div>
-        <h3 className="cTitle">B2C Cold Calling</h3>
-        <p className="cText">High-touch consumer outreach to spark interest and convert with respectful conversations.</p>
-        <ul className="cList">
-          <li>Tone-matched scripts for consumers</li>
-          <li>Opt-in, consent, and compliance guardrails</li>
-          <li>Outcome tracking & daily summaries</li>
-        </ul>
-        <div className="cActions"><a className="btn sm" href="/b2c-cold-calling">Learn more</a></div>
-      </div>
+            <div className="cCard">
+              <div className="cIcon"><FaUsers /></div>
+              <h3 className="cTitle">B2C Cold Calling</h3>
+              <p className="cText">High-touch consumer outreach to spark interest and convert with respectful conversations.</p>
+              <ul className="cList">
+                <li>Tone-matched scripts for consumers</li>
+                <li>Opt-in, consent, and compliance guardrails</li>
+                <li>Outcome tracking & daily summaries</li>
+              </ul>
+              <div className="cActions"><a className="btn sm" href="/b2c-cold-calling">Learn more</a></div>
+            </div>
 
-      <div className="cCard">
-        <div className="cIcon"><FaRegChartBar /></div>
-        <h3 className="cTitle">B2B Lead Generation</h3>
-        <p className="cText">Identify and qualify companies likely to benefit from your solution — then pass ready leads to sales.</p>
-        <ul className="cList">
-          <li>Account & contact sourcing</li>
-          <li>Multi-touch outreach (calls first)</li>
-          <li>Qualification framework & reporting</li>
-        </ul>
-        <div className="cActions"><a className="btn sm" href="/b2b-lead-generation">Learn more</a></div>
-      </div>
+            <div className="cCard">
+              <div className="cIcon"><FaRegChartBar /></div>
+              <h3 className="cTitle">B2B Lead Generation</h3>
+              <p className="cText">Identify and qualify companies likely to benefit from your solution — then pass ready leads to sales.</p>
+              <ul className="cList">
+                <li>Account & contact sourcing</li>
+                <li>Multi-touch outreach (calls first)</li>
+                <li>Qualification framework & reporting</li>
+              </ul>
+              <div className="cActions"><a className="btn sm" href="/b2b-lead-generation">Learn more</a></div>
+            </div>
 
-      <div className="cCard">
-        <div className="cIcon"><FaBullseye /></div>
-        <h3 className="cTitle">B2C Lead Generation</h3>
-        <p className="cText">Engage and qualify potential customers through targeted outreach and personalized follow-ups.</p>
-        <ul className="cList">
-          <li>Consumer profiling & segmentation</li>
-          <li>Multi-channel outreach (calls, SMS, email)</li>
-          <li>Conversion reporting dashboard</li>
-        </ul>
-        <div className="cActions"><a className="btn sm" href="/b2c-lead-generation">Learn more</a></div>
-      </div>
-    </div>
-  </div>
-</section>
+            <div className="cCard">
+              <div className="cIcon"><FaBullseye /></div>
+              <h3 className="cTitle">B2C Lead Generation</h3>
+              <p className="cText">Engage and qualify potential customers through targeted outreach and personalized follow-ups.</p>
+              <ul className="cList">
+                <li>Consumer profiling & segmentation</li>
+                <li>Multi-channel outreach (calls, SMS, email)</li>
+                <li>Conversion reporting dashboard</li>
+              </ul>
+              <div className="cActions"><a className="btn sm" href="/b2c-lead-generation">Learn more</a></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ===== WHY US ===== */}
       <section className="section alt whySection">
@@ -144,6 +167,7 @@ export default function Home() {
             deliver predictable leads, clear reporting, and fast rampability —
             outreach that respects prospects and converts.
           </p>
+
           <Reveal className="from-right">
             <div className="grid-why">
               {[
@@ -163,13 +187,69 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== PACKAGES (CLEAN) ===== */}
+      <section className="section" id="packages">
+        <div className="container">
+          <div style={{ textAlign: "center", marginBottom: 28 }}>
+            <h2 className="h2">Packages</h2>
+            <p className="p" style={{ maxWidth: 780, margin: "8px auto", opacity: 0.9 }}>
+              Pick a ready package or request a custom mix. Transparent pricing, fast delivery.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 22 }}>
+            {packages.map((cat, idx) => (
+              <Reveal key={idx} once>
+                <div
+                  style={{
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(255,255,255,0.12)",
+                    borderRadius: 20,
+                    padding: 22,
+                    boxShadow: "0 16px 40px rgba(0,0,0,0.35)",
+                  }}
+                >
+                  <h3 style={{ fontSize: 20, fontWeight: 900, marginBottom: 14 }}>{cat.title}</h3>
+
+                  {cat.plans.map((p, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        padding: "12px 14px",
+                        marginBottom: 10,
+                        borderRadius: 14,
+                        background: "rgba(255,255,255,0.05)",
+                        border: "1px solid rgba(255,255,255,0.08)",
+                      }}
+                    >
+                      <div>
+                        <div style={{ fontWeight: 800 }}>{p.name}</div>
+                        <div style={{ fontSize: 13, opacity: 0.85 }}>{p.qty}</div>
+                      </div>
+                      <div style={{ fontWeight: 900 }}>{p.price}</div>
+                    </div>
+                  ))}
+
+                  <div style={{ marginTop: 16, textAlign: "center" }}>
+                    <a href="/contact" className="btn sm">Book a meeting</a>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* ✅ FOOTNOTE REMOVED COMPLETELY */}
+        </div>
+      </section>
+
       {/* ===== TEAM ===== */}
       <section className="section reveal teamSection">
         <div className="container">
           <h2 className="h2 slim">Meet The Core Team</h2>
-          <p className="p tiny teamLead">
-            Our leadership and delivery team working across campaigns and QA.
-          </p>
+          <p className="p tiny teamLead">Our leadership and delivery team working across campaigns and QA.</p>
 
           <div className="teamRow">
             {[
@@ -184,9 +264,7 @@ export default function Home() {
                   <img className="avatar" src={p.img} alt={p.name} />
                   <div className="name">{p.name}</div>
                   <div className="role">
-                    {p.role.split("\n").map((l, ii) => (
-                      <div key={ii}>{l}</div>
-                    ))}
+                    {p.role.split("\n").map((l, ii) => <div key={ii}>{l}</div>)}
                   </div>
 
                   <div className="contactIcons">
@@ -215,33 +293,6 @@ export default function Home() {
       {/* ===== REVIEWS ===== */}
       <ReviewsV2 />
 
-      {/* ===== FAQ ===== */}
-      <section className="section reveal alt">
-        <div className="container">
-          <h2 className="h2 slim">FAQ</h2>
-          <div className="faq">
-            {[
-              { q: "Is there a trial?", a: "Yes—1-2 week pilot to align on ICP & script." },
-              { q: "Month-to-month?", a: "Flexible seats; pause seasonally." },
-              { q: "How billing works?", a: "Fixed seat fee + optional performance bonus." },
-              { q: "Compliance?", a: "GDPR • DNC • TCPA—all covered." }
-            ].map((f, i) => (
-              <div
-                className="item"
-                key={i}
-                onClick={(e) => e.currentTarget.classList.toggle("open")}
-              >
-                <div className="q">
-                  {f.q}
-                  <span>＋</span>
-                </div>
-                <div className="a">{f.a}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ===== CTA ===== */}
       <section className="ctaCenter">
         <div className="ctaCard">
@@ -257,4 +308,3 @@ export default function Home() {
     </>
   );
 }
-// sendEmail utilities moved to ../utils/sendEmail.js

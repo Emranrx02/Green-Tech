@@ -1,57 +1,49 @@
 // src/pages/Services.jsx
 import { Link } from "react-router-dom";
-import { telemarketingIntro, services } from "../content/services";
+import { services } from "../content/services";
 import { servicePages } from "../content/servicePages";
 
 export default function Services() {
   return (
     <main>
-      {/* Intro */}
-      <section className="section">
-        <div className="container">
-          <h1 className="h1" style={{ marginBottom: 10 }}>
-            {telemarketingIntro.title}
-          </h1>
-          <p className="p">{telemarketingIntro.tagline}</p>
-
-          <div className="card" style={{ marginTop: 18 }}>
-            <h3 className="h3" style={{ marginBottom: 6 }}>
-              What is Telemarketing?
-            </h3>
-            <p className="p">{telemarketingIntro.whatIs}</p>
-            <ul className="list check">
-              <li>Outbound calls to targeted prospects</li>
-              <li>Inbound calls from ads or promotions</li>
-              <li>Live agents first; automation only where fully compliant</li>
-              <li>Used across B2B and B2C campaigns</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Service Cards */}
+      {/* Services Section */}
       <section className="section alt" id="services">
         <div className="container">
-          <div className="sectionHeading center">
-            <div className="lead">
-              <h2 className="h2">Services We Provide</h2>
-              <p className="p">
-                Outcome-focused calling & lead gen with compliance, QA, and clear reporting.
-              </p>
-            </div>
+          {/* Center Heading (ONLY ONCE) */}
+          <div
+            className="sectionHeading"
+            style={{
+              textAlign: "center",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              marginBottom: 40,
+            }}
+          >
+            <h2 className="h2">Service That We Provide</h2>
+            <p className="p" style={{ maxWidth: 720, marginTop: 8 }}>
+              Outcome-focused calling & lead gen with compliance, QA, and clear reporting.
+            </p>
           </div>
 
+          {/* Service Cards */}
           <div className="svcGrid">
             {services.map((s) => (
               <article key={s.id} className="svcCard">
-                <div className="svcIcon" aria-hidden>{s.icon}</div>
-                <h3 className="h3" style={{ marginBottom: 6 }}>{s.title}</h3>
+                <div className="svcIcon" aria-hidden>
+                  {s.icon}
+                </div>
+
+                <h3 className="h3" style={{ marginBottom: 6 }}>
+                  {s.title}
+                </h3>
+
                 <p className="p">{s.summary}</p>
 
-                {/* show basic packages inline if available */}
-                {servicePages[s.slug] && servicePages[s.slug].packages ? (
+                {/* Inline packages */}
+                {servicePages[s.slug]?.packages ? (
                   <div className="svcPackages">
-                    {servicePages[s.slug].packages.slice(0,3).map((p, i) => (
+                    {servicePages[s.slug].packages.slice(0, 3).map((p, i) => (
                       <div key={i} className="pkgInline">
                         <div className="pkgName">{p.name}</div>
                         <div className="pkgPrice">{p.price}</div>
@@ -60,19 +52,26 @@ export default function Services() {
                   </div>
                 ) : null}
 
-                {s.bullets && typeof s.bullets === "object" && Object.keys(s.bullets).length > 0 ? (
+                {/* Accordion bullets (optional) */}
+                {s.bullets &&
+                typeof s.bullets === "object" &&
+                Object.keys(s.bullets).length > 0 ? (
                   Object.entries(s.bullets).map(([group, items], idx) => (
                     <details key={idx} className="acc">
                       <summary>{group}</summary>
                       <ul className="list dot">
-                        {Array.isArray(items) ? items.map((t, i) => <li key={i}>{t}</li>) : null}
+                        {Array.isArray(items)
+                          ? items.map((t, i) => <li key={i}>{t}</li>)
+                          : null}
                       </ul>
                     </details>
                   ))
                 ) : null}
 
-                <div style={{ marginTop: 12 }}>
-                  <Link className="btn" to={`/${s.slug}`}>Learn more</Link>
+                <div style={{ marginTop: 14 }}>
+                  <Link className="btn" to={`/${s.slug}`}>
+                    Learn more
+                  </Link>
                 </div>
               </article>
             ))}
@@ -81,4 +80,4 @@ export default function Services() {
       </section>
     </main>
   );
-} 
+}

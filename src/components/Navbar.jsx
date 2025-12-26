@@ -6,13 +6,11 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
 
-  // close drawer on route change
   useEffect(() => {
     setOpen(false);
     document.body.classList.remove("menu-open");
   }, [location.pathname]);
 
-  // Escape to close
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "Escape") setOpen(false);
@@ -21,7 +19,6 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  // keep <body> from scrolling when menu is open
   useEffect(() => {
     document.body.classList.toggle("menu-open", open);
   }, [open]);
@@ -44,12 +41,14 @@ export default function Navbar() {
 
         <nav className="links hideOnMobile" aria-label="Primary">
           <NavLink to="/about">About</NavLink>
+          <NavLink to="/packages">Packages</NavLink>
           <NavLink to="/services">Services</NavLink>
           <NavLink to="/contact">Help Center</NavLink>
         </nav>
 
+        {/* RIGHT BUTTON */}
         <Link className="btn sm hideOnMobile" to="/contact">
-          Discover GT
+          Book a meeting
         </Link>
 
         <button
@@ -83,11 +82,12 @@ export default function Navbar() {
           </button>
 
           <NavLink to="/about">About</NavLink>
+          <NavLink to="/packages">Packages</NavLink>
           <NavLink to="/services">Services</NavLink>
           <NavLink to="/contact">Help Center</NavLink>
 
           <Link className="btn primary" to="/contact">
-            Discover GT
+            Book a meeting
           </Link>
         </div>
       </div>

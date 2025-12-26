@@ -60,6 +60,8 @@ export default function Contact() {
             <span className="label success">✅ Sent!</span>
             <span className="label error">❌ Try again</span>
             <span className="truck" aria-hidden />
+            <span className="shadow" aria-hidden />
+            
           </button>
         </form>
       </div>
