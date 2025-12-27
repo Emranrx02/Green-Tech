@@ -1914,3 +1914,205 @@ body.menu-open{
   .ctaBtn, .ctaCard{ transition: none !important }
 }
 
+/* ===========================
+   ✅ Green Tech Footer (fixed)
+   =========================== */
+
+.gtFooter{
+  margin-top: 60px;
+  border-top: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+  position: relative;
+}
+
+.gtFooter::before{
+  content:"";
+  display:block;
+  height:1px;
+  width:100%;
+  background: linear-gradient(90deg, transparent, var(--brand) 15%, var(--brand2) 85%, transparent);
+  opacity:.10;
+}
+
+/* TOP GRID */
+.gtFooterInner{
+  display:grid;
+  grid-template-columns: 1.35fr 0.75fr 0.9fr;
+  gap: 28px;
+  padding: 34px 0 22px;
+  align-items:start;
+}
+
+.gtFooterLeft{ max-width: 520px; }
+.gtBrand{
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: .2px;
+}
+.gtTag{
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: .95rem;
+}
+.gtDesc{
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+  font-size: .98rem;
+}
+
+/* MID */
+.gtFooterMid h4,
+.gtFooterRight h4{
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.gtFooterMid{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  justify-self: center;     /* ✅ center column */
+  text-align: center;       /* ✅ centered links */
+}
+
+.gtFooterMid a{
+  color: var(--muted);
+  font-weight: 800;
+  font-size: .95rem;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.06);
+  background: rgba(255,255,255,.02);
+  transition: transform .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
+}
+.gtFooterMid a:hover{
+  color: var(--text);
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.12);
+  transform: translateY(-2px);
+}
+
+/* RIGHT */
+.gtFooterRight{
+  justify-self: end;
+  text-align: right;
+}
+
+.gtFooterRight p{
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-weight: 700;
+}
+.gtFooterRight p:last-child{ margin-bottom:0; }
+
+/* BOTTOM ROW */
+.gtFooterBottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;   /* ✅ justified */
+  gap:16px;
+  padding: 18px 0 22px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+
+.gtCopy{
+  color: var(--muted);
+  font-size: .95rem;
+  line-height: 1.4;
+}
+
+.gtDev a{
+  color: var(--brand2);
+  font-weight: 900;
+  position: relative;
+  text-decoration: none;
+}
+.gtDev a::after{
+  content:"";
+  position:absolute;
+  left:0; right:0; bottom:-2px;
+  height:2px;
+  background: linear-gradient(90deg, var(--brand2), var(--brand));
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .25s ease;
+}
+.gtDev a:hover::after{ transform: scaleX(1); }
+
+/* SOCIAL ICONS (✅ giant icon fix) */
+.gtSocial{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.gtSocialBtn{
+  width:42px;
+  height:42px;
+  display:inline-grid;
+  place-items:center;
+  border-radius: 14px;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.08);
+  color: #cfe7ff;
+  overflow:hidden;
+  transition: transform .18s ease, box-shadow .22s ease, background .22s ease, border-color .22s ease;
+}
+
+.gtSocialBtn:hover{
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, rgba(98,208,255,.12), rgba(108,243,193,.10));
+  border-color: rgba(255,255,255,.14);
+  box-shadow: 0 10px 24px rgba(0,0,0,.28);
+}
+
+/* ✅ force SVG size so it never becomes giant */
+.gtSocialBtn svg{
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  min-height: 18px !important;
+  display:block;
+  fill: currentColor;
+}
+
+/* ===========================
+   ✅ Responsive Footer
+   =========================== */
+@media (max-width: 900px){
+  .gtFooterInner{
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 26px 0 18px;
+    text-align: center;
+  }
+
+  .gtFooterLeft{ max-width: 100%; }
+
+  .gtFooterMid{
+    justify-self: center;
+    text-align: center;
+  }
+
+  .gtFooterRight{
+    justify-self: center;
+    text-align: center;
+  }
+
+  .gtFooterBottom{
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+}
+
+
