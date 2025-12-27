@@ -1199,6 +1199,62 @@ body.menu-open{
   .rvViewport::before,
   .rvViewport::after{ width: 70px; }
 }
+/* ===========================
+   HOME Reviews — Mobile Fix
+   =========================== */
+@media (max-width: 640px){
+
+  /* stop the page from becoming wider because of max-content rail */
+  .rvSection,
+  .rvViewport{
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  /* remove fade edges on mobile (it can look cut + adds weird width issues) */
+  .rvViewport::before,
+  .rvViewport::after{
+    display: none;
+  }
+
+  /* turn into swipe carousel */
+  .rvViewport{
+    padding: 10px;
+    border-radius: 18px;
+  }
+
+  .rvRail{
+    animation: none !important;          /* disable auto scroll on mobile */
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding: 6px 4px 10px;
+  }
+
+  .rvRail::-webkit-scrollbar{
+    height: 0px; /* hide scrollbar */
+  }
+
+  .rvCard{
+    flex: 0 0 90%;
+    width: 90%;
+    min-height: 0;
+    scroll-snap-align: center;
+    border-radius: 18px;
+  }
+
+  .rvText{
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+}
+
 
 /* =================
    FAQ (accordion)
