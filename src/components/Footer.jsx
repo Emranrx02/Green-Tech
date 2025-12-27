@@ -51,7 +51,7 @@ export default function Footer() {
           {/* Facebook */}
           <a
             className="gtSocialBtn"
-            href="https://facebook.com"
+            href="https://www.facebook.com/GreenTech27"
             target="_blank"
             rel="noreferrer"
             aria-label="Facebook"
@@ -65,7 +65,7 @@ export default function Footer() {
           {/* LinkedIn */}
           <a
             className="gtSocialBtn"
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/grentech/"
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
@@ -79,7 +79,7 @@ export default function Footer() {
           {/* WhatsApp */}
           <a
             className="gtSocialBtn"
-            href="https://wa.me/8801619012356"
+            href="https://wa.me/8801849873128"
             target="_blank"
             rel="noreferrer"
             aria-label="WhatsApp"
